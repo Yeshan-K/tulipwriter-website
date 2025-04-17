@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { forwardRef } from "react"
 
 export default () => (
-  <NavigationMenu.Root className="NavigationMenuRoot">
+  <NavigationMenu.Root className="NavigationMenuRoot flex-none">
     <NavigationMenu.List className="NavigationMenuList">
       <NavigationMenu.Item>
         <NavigationMenu.Trigger className="NavigationMenuTrigger">
