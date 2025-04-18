@@ -4,7 +4,7 @@ import "styles/tailwind.css"
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="h-screen max-h-screen w-screen max-w-screen overflow-hidden">
+      <body className="dark h-screen max-h-screen w-screen max-w-screen overflow-hidden">
         <div
           id="AppContainer"
           className="relative h-full w-full overflow-x-hidden overflow-y-auto overscroll-none"

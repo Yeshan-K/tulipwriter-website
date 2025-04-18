@@ -18,6 +18,72 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
+
+  :root {
+    --appBackground: 0 0% 8.9%;
+    --appLayoutBorder: 0 0% 14.9%;
+    --appLayoutText: 0 0% 80%;
+    --appLayoutTextMuted: 0 0% 50%;
+    --appLayoutShadow: 0 0% 0%;
+    --appLayoutGentleShadow: 0 0% 3%;
+    --appLayoutHover: 0 0% 6.9%;
+    --appLayoutHoverLight: 0 0% 8.3%;
+    --appLayoutInverseHover: 0 0% 13.9%;
+    --appLayoutInputBackground: 0 0% 14.9%;
+    --appLayoutPressed: 0 0% 3%;
+    --appLayoutDestruct: 0 62.8% 30.6%;
+    --appLayoutDirectoryNodeHover: 0 0% 100% / 15%;
+    --specialButton: 0 0% 90%;
+    --specialButtonHover: 0 0% 60%;
+    --specialButtonDisabled: 0 0% 50%;
+    --activitySelectLine: 0 0% 100%;
+    --validationErrorText: 0 45% 41%;
+    --sidePanelDragHandle: 0 0% 100% / 15%;
+  }
+
+  .dark {
+    --appBackground: 0 0% 8.9%;
+    --appBackgroundAccent: 0 0% 6.9%;
+    --appLayoutBorder: 0 0% 16.9%;
+    --appLayoutText: 0 0% 80%;
+    --appLayoutShadow: 0 0% 0%;
+    --appLayoutGentleShadow: 0 0% 3%;
+    --appLayoutHover: 0 0% 15%;
+    --appLayoutDarkHover: 0 0% 3.9%;
+    --appLayoutInverseHover: 0 0% 20%;
+    --appLayoutInputBackground: 0 0% 14.9%;
+    --appLayoutPressed: 0 0% 3%;
+    --appLayoutDestruct: 0 90% 38%;
+    --appLayoutHighlight: 0 0% 100%;
+    --activitySelectLine: 0 0% 100%;
+    --appLayoutSubmitButton: 0 0% 80%;
+  }
+}
+
+@theme inline {
+  --color-appBackground: hsl(var(--appBackground));
+  --color-appLayoutBorder: hsl(var(--appLayoutBorder));
+  --color-appLayoutText: hsl(var(--appLayoutText));
+  --color-appLayoutTextMuted: hsl(var(--appLayoutTextMuted));
+  --color-appLayoutShadow: hsl(var(--appLayoutShadow));
+  --color-appLayoutGentleShadow: hsl(var(--appLayoutGentleShadow));
+  --color-appLayoutHover: hsl(var(--appLayoutHover));
+  --color-appLayoutHoverLight: hsl(var(--appLayoutHoverLight));
+  --color-appLayoutInverseHover: hsl(var(--appLayoutInverseHover));
+  --color-appLayoutInputBackground: hsl(var(--appLayoutInputBackground));
+  --color-appLayoutPressed: hsl(var(--appLayoutPressed));
+  --color-appLayoutDestruct: hsl(var(--appLayoutDestruct));
+  --color-appLayoutDirectoryNodeHover: hsl(var(--appLayoutDirectoryNodeHover));
+  --color-specialButton: hsl(var(--specialButton));
+  --color-specialButtonHover: hsl(var(--specialButtonHover));
+  --color-specialButtonDisabled: hsl(var(--specialButtonDisabled));
+  --color-activitySelectLine: hsl(var(--activitySelectLine));
+  --color-validationErrorText: hsl(var(--validationErrorText));
+  --color-sidePanelDragHandle: hsl(var(--sidePanelDragHandle));
+  --color-appBackgroundAccent: hsl(var(--appBackgroundAccent));
+  --color-appLayoutDarkHover: hsl(var(--appLayoutDarkHover));
+  --color-appLayoutHighlight: hsl(var(--appLayoutHighlight));
+  --color-appLayoutSubmitButton: hsl(var(--appLayoutSubmitButton));
 }
 
 /* reset

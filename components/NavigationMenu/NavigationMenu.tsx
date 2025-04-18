@@ -1,6 +1,7 @@
 import { CaretDownIcon } from "@radix-ui/react-icons"
 import * as NavigationMenu from "@radix-ui/react-navigation-menu"
-import classNames from "classnames";
+import classNames from "classnames"
+import Link from "next/link"
 import { forwardRef } from "react"
 
 export default () => (
@@ -14,7 +15,7 @@ export default () => (
           <ul className="List one">
             <li style={{ gridRow: "span 3" }}>
               <NavigationMenu.Link asChild>
-                <a className="Callout" href="/">
+                <Link className="Callout" href="/">
                   <svg aria-hidden width="38" height="38" viewBox="0 0 25 25" fill="white">
                     <path d="M12 25C7.58173 25 4 21.4183 4 17C4 12.5817 7.58173 9 12 9V25Z"></path>
                     <path d="M12 0H4V8H12V0Z"></path>
@@ -22,7 +23,7 @@ export default () => (
                   </svg>
                   <div className="CalloutHeading">Radix Primitives</div>
                   <p className="CalloutText">Unstyled, accessible components for React.</p>
-                </a>
+                </Link>
               </NavigationMenu.Link>
             </li>
 
@@ -84,7 +85,7 @@ export default () => (
   </NavigationMenu.Root>
 )
 
-const ListItem = forwardRef(({ className, children, title, ...props }, forwardedRef) => (
+const ListItem = forwardRef<HTMLAnchorElement, React.AnchorHTMLAttributes<HTMLAnchorElement> & { title: string }>(({ className, children, title, ...props }, forwardedRef) => (
   <li>
     <NavigationMenu.Link asChild>
       <a className={classNames("ListItemLink", className)} {...props} ref={forwardedRef}>
