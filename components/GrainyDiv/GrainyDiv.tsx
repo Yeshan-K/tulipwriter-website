@@ -1,9 +1,7 @@
 "use client"
 
-import { VariantProps } from "class-variance-authority"
-import { motion, MotionValue, useMotionTemplate, useMotionValue, useMotionValueEvent, useSpring } from "motion/react"
-import React, { useCallback, useMemo, useRef, useState } from "react"
-import { JsxElement } from "typescript"
+import { motion, MotionValue, useMotionTemplate, useMotionValue, useSpring } from "motion/react"
+import React, { useCallback, useRef } from "react"
 
 export interface GrainyDivProps {
   className?: string
