@@ -38,10 +38,12 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLAnchorElemen
   href: string
 }
 
-export function Button({ className, intent, size, underline, ...props }: ButtonProps) {
+export function Button(props: Readonly<ButtonProps>) {
+  const { className, intent, size, underline, children, ...rest } = props;
+  
   return (
-    <a className={twMerge(button({ intent, size, className, underline }))} {...props}>
-      {props.children}
+    <a className={twMerge(button({ intent, size, className, underline }))} {...rest}>
+      {children}
     </a>
   )
 }
