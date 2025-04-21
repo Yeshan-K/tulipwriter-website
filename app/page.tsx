@@ -25,22 +25,46 @@ export default function Web() {
   return (
     <>
       <section className="bg-appBackground">
-        <div className="mx-auto grid max-w-(--breakpoint-xl) px-4 py-8 text-center lg:py-16">
-          <div className="mx-auto place-self-center">
+        <div className="mx-auto grid max-w-(--breakpoint-lg) px-4 py-8 pb-1 text-start lg:px-24 lg:py-16 lg:pb-2">
+          <div className="mr-auto place-self-center">
             <h1 className="text-appLayoutText mb-4 max-w-2xl text-4xl leading-none font-light tracking-tight md:text-5xl xl:text-6xl">
               Tulip Writer
             </h1>
-            <p className="text-appLayoutTextMuted mb-6 max-w-2xl font-light md:text-lg lg:mb-8 lg:text-xl">Write.</p>
-            <Button href="https://github.com/Blazity/next-enterprise" className="mr-3">
-              Get started
-            </Button>
-            <Button
-              href="https://vercel.com/new/git/external?repository-url=https://github.com/Blazity/next-enterprise"
-              intent="secondary"
-            >
-              Deploy Now
-            </Button>
+            <p className="text-appLayoutTextMuted mb-4 max-w-2xl font-light md:text-lg lg:mb-8 lg:text-xl">Write.</p>
           </div>
+        </div>
+        <div className="mx-auto grid max-w-(--breakpoint-lg) lg:grid-cols-6 px-4 lg:px-12 gap-2 mb-4 lg:mb-8 text-center ">
+          <Button href="https://github.com/Blazity/next-enterprise" className=" col-span-2">
+            Download for Windows
+          </Button>
+          <Button
+            className=""
+            href="https://vercel.com/new/git/external?repository-url=https://github.com/Blazity/next-enterprise"
+            intent="secondary"
+          >
+            MacOS
+          </Button>
+          <Button
+            className=""
+            href="https://vercel.com/new/git/external?repository-url=https://github.com/Blazity/next-enterprise"
+            intent="secondary"
+          >
+            Linux
+          </Button>
+          <Button
+            className=""
+            href="https://vercel.com/new/git/external?repository-url=https://github.com/Blazity/next-enterprise"
+            intent="secondary"
+          >
+            Android
+          </Button>
+          <Button
+            className=""
+            href="https://vercel.com/new/git/external?repository-url=https://github.com/Blazity/next-enterprise"
+            intent="secondary"
+          >
+            iOS
+          </Button>
         </div>
       </section>
       <section className="bg-appBackground">
@@ -49,17 +73,17 @@ export default function Web() {
             {LP_GRID_ITEMS.map((singleItem) => (
               <GrainyDiv
                 key={singleItem.title}
-                className="border-appLayoutBorder h-fit flex flex-col items-center justify-start gap-3 rounded-lg border pt-3 pb-5 px-4 text-center font-sans"
+                className="border-appLayoutBorder flex h-fit flex-col items-center justify-start gap-3 rounded-lg border px-4 pt-3 pb-5 text-center font-sans"
               >
-                <header className="h-[2.8rem] flex w-full items-center justify-start gap-4 ">
+                <header className="flex h-[2.8rem] w-full items-center justify-start gap-4">
                   <div className="bg-appBackgroundAccent text-appLayoutText flex size-10 items-center justify-center rounded-full p-1.5 lg:size-12">
                     {singleItem.icon}
                   </div>
-                  <div className="text-appLayoutText w-fit pb-px items-center justify-start text-xl font-thin">
+                  <div className="text-appLayoutText w-fit items-center justify-start pb-px text-xl font-thin">
                     {singleItem.title}
                   </div>
                 </header>
-                <div className="h-fit text-appLayoutTextMuted flex w-full pl-1 items-center justify-start text-nowrap overflow-x-hidden overflow-x-ellipsis">
+                <div className="text-appLayoutTextMuted overflow-x-ellipsis flex h-fit w-full items-center justify-start overflow-x-hidden pl-1 text-nowrap">
                   {singleItem.description}
                 </div>
               </GrainyDiv>
