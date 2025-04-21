@@ -10,36 +10,36 @@ export interface GrainyDivProps {
   className?: string
   disabled?: boolean
   children?: React.ReactNode
-  restingPos?: number
+  restingPosX?: number
+  restingPosY?: number
   gradientSize?: number
 }
 
 export function GrainyDiv(props: Readonly<GrainyDivProps>) {
-  const { className, disabled = false, children, restingPos = 0, gradientSize = 200 } = props
+  const { className, disabled = false, children, restingPosX = 0, restingPosY = 50, gradientSize = 125 } = props
 
   const grainyDivRef = useRef(null)
 
-  const mouseX: MotionValue<number> = useMotionValue(restingPos)
-  const mouseY: MotionValue<number> = useMotionValue(restingPos)
+  const mouseX: MotionValue<number> = useMotionValue(restingPosX)
+  const mouseY: MotionValue<number> = useMotionValue(restingPosY)
 
   const mouseXSpring: MotionValue<number> = useSpring(mouseX, { stiffness: 400, damping: 50 })
   const mouseYSpring: MotionValue<number> = useSpring(mouseY, { stiffness: 400, damping: 50 })
 
-  const handleMouseMove = useCallback(({ clientX, clientY, currentTarget }: React.MouseEvent<HTMLDivElement>) => {
-    const { left, top, width, height } = currentTarget.getBoundingClientRect()
-
-    mouseX.set(((clientX - left) / width) * 100)
-    mouseY.set(((clientY - top) / height) * 100)
+  const handleMouseMove = useCallback(() => {
+    // const { left, top, width, height } = currentTarget.getBoundingClientRect()
+    mouseX.set(100)
+    mouseY.set(50)
   }, [])
 
   const handleMouseLeave = useCallback(() => {
-    mouseX.set(restingPos)
-    mouseY.set(restingPos)
+    mouseX.set(restingPosX)
+    mouseY.set(restingPosY)
   }, [])
 
   if (disabled) {
-    mouseX.set(restingPos)
-    mouseY.set(restingPos)
+    mouseX.set(restingPosX)
+    mouseY.set(restingPosY)
   }
 
   const spotlightBackground = useMotionTemplate`radial-gradient(circle at ${mouseXSpring}% ${mouseYSpring}%, hsl(var(--appLayoutHoverGentle)) 0%, hsl(var(--appBackground)) ${gradientSize}%)`
@@ -47,9 +47,9 @@ export function GrainyDiv(props: Readonly<GrainyDivProps>) {
   return (
     <motion.div
       ref={grainyDivRef}
-      onMouseMove={(args) => {
+      onMouseMove={() => {
         if (disabled) return
-        handleMouseMove(args)
+        handleMouseMove()
       }}
       onMouseLeave={handleMouseLeave}
       className={`${className} `}

@@ -59,7 +59,7 @@ export const LP_GRID_ITEMS = [
 
   {
     title: "Google Drive Integration",
-    description: "Export/import your work directly to Google Drive",
+    description: "Export/import your work directly to Google Drive.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
