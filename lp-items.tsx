@@ -1,7 +1,7 @@
 export const LP_GRID_ITEMS = [
   {
-    title: "Novel Writing",
-    description: "Designed by a writer, for writers.",
+    title: "Built for Long-Form Fiction",
+    description: "A minimalist editor designed for novels, not notes.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -20,8 +20,8 @@ export const LP_GRID_ITEMS = [
     ),
   },
   {
-    title: "Tailwind CSS",
-    description: "A utility-first CSS framework for rapid UI development.",
+    title: "Distraction Free",
+    description: "Write for hours without distractions and clutter.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -39,9 +39,10 @@ export const LP_GRID_ITEMS = [
       </svg>
     ),
   },
+
   {
-    title: "ESlint & Prettier",
-    description: "For clean, consistent, and error-free code.",
+    title: "Cloud Synchronization",
+    description: "Always pick up where you left off.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -55,9 +56,10 @@ export const LP_GRID_ITEMS = [
       </svg>
     ),
   },
+
   {
-    title: "Extremely strict TypeScript",
-    description: "With `ts-reset` library for ultimate type safety.",
+    title: "Google Drive Integration",
+    description: "Export/import your work directly to Google Drive",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -75,9 +77,10 @@ export const LP_GRID_ITEMS = [
       </svg>
     ),
   },
+
   {
-    title: "Bundle analyzer plugin",
-    description: "Keep an eye on your bundle size.",
+    title: "Your Editor, Your Rules",
+    description: "Customize fonts, themes, and layouts.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -96,8 +99,8 @@ export const LP_GRID_ITEMS = [
     ),
   },
   {
-    title: "Jest & React Testing Library",
-    description: "For rock-solid unit and integration tests.",
+    title: "Fictional Worlds, Flawless Spelling",
+    description: "Add invented names to a custom dictionary.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -116,8 +119,8 @@ export const LP_GRID_ITEMS = [
     ),
   },
   {
-    title: "Playwright",
-    description: "Write end-to-end tests like a pro.",
+    title: "Story Webs, Not Checklists",
+    description: "Link any paper to another.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -136,8 +139,8 @@ export const LP_GRID_ITEMS = [
     ),
   },
   {
-    title: "Storybook",
-    description: "Create, test, and showcase your components.",
+    title: "Deep Search",
+    description: "Find anything instantly.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -156,8 +159,8 @@ export const LP_GRID_ITEMS = [
     ),
   },
   {
-    title: "Smoke Testing & Acceptance Tests",
-    description: "For confidence in your deployments.",
+    title: "Nested Creativity",
+    description: "Organize your work into books, sections, and papers.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -176,8 +179,8 @@ export const LP_GRID_ITEMS = [
     ),
   },
   {
-    title: "Conventional commits git hook",
-    description: "Keep your commit history neat and tidy.",
+    title: "Write Offline, Sync Later",
+    description: "Work anywhere.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -196,8 +199,8 @@ export const LP_GRID_ITEMS = [
     ),
   },
   {
-    title: "Observability",
-    description: "Open Telemetry integration for seamless monitoring.",
+    title: "Export for Publishing",
+    description: "One-click exports docx.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -217,8 +220,8 @@ export const LP_GRID_ITEMS = [
     ),
   },
   {
-    title: "Absolute imports",
-    description: "No more spaghetti imports.",
+    title: "Placeholder",
+    description: "A placeholder description.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -231,186 +234,10 @@ export const LP_GRID_ITEMS = [
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"
+          d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
         />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
     ),
-  },
-  {
-    title: "Health checks",
-    description: "Kubernetes-compatible for robust deployments.",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="h-6 w-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Radix UI",
-    description: "Headless UI components for endless customization.",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="h-6 w-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 01-.657.643 48.39 48.39 0 01-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 01-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 00-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 01-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 00.657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 01-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 005.427-.63 48.05 48.05 0 00.582-4.717.532.532 0 00-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 00.658-.663 48.422 48.422 0 00-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 01-.61-.58v0z"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "CVA",
-    description: "Create a consistent, reusable, and atomic design system.",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="h-6 w-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Renovate BOT",
-    description: "Auto-updating dependencies, so you can focus on coding.",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="h-6 w-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Patch-package",
-    description: "Fix external dependencies without losing your mind.",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="h-6 w-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Components coupling & cohesion graph",
-    description: "A tool for managing component relationships.",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="h-6 w-6"
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
-      </svg>
-    ),
-  },
-  {
-    title: "GitHub Actions",
-    description: "Pre-configured actions for smooth workflows, including Bundle Size and performance stats.",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="h-6 w-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Automated ChatGPT Code Reviews",
-    description: "Stay on the cutting edge with AI-powered code reviews!",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="h-6 w-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.068.157 2.148.279 3.238.364.466.037.893.281 1.153.671L12 21l2.652-3.978c.26-.39.687-.634 1.153-.67 1.09-.086 2.17-.208 3.238-.365 1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
-        />
-      </svg>
-    ),
-  },
-  {
-    title: "Semantic Release",
-    description: "For automatic changelog generation.",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="h-6 w-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M15 11.25l-3-3m0 0l-3 3m3-3v7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
-    ),
-  },
+  }
 ]
