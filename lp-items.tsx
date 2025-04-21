@@ -1,7 +1,7 @@
 export const LP_GRID_ITEMS = [
   {
-    title: "Next.js",
-    description: "Fast by default, with config optimized for performance.",
+    title: "Novel Writing",
+    description: "Designed by a writer, for writers.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

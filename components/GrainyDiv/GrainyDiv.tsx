@@ -15,7 +15,7 @@ export interface GrainyDivProps {
 }
 
 export function GrainyDiv(props: Readonly<GrainyDivProps>) {
-  const { className, disabled = false, children, restingPos = -150, gradientSize = 120 } = props
+  const { className, disabled = false, children, restingPos = -5, gradientSize = 120 } = props
 
   const grainyDivRef = useRef(null)
 
