@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import { Button } from "components/Button/Button"
 
 import { LP_GRID_ITEMS } from "lp-items"
+import { GrainyDiv } from "components/GrainyDiv/GrainyDiv"
 
 export const metadata: Metadata = {
   title: "Next.js Enterprise Boilerplate",
@@ -26,13 +27,11 @@ export default function Web() {
       <section className="bg-appBackground">
         <div className="mx-auto grid max-w-(--breakpoint-xl) px-4 py-8 text-center lg:py-16">
           <div className="mx-auto place-self-center">
-            <h1 className="text-appLayoutText mb-4 max-w-2xl text-4xl leading-none font-extrabold tracking-tight md:text-5xl xl:text-6xl">
+            <h1 className="text-appLayoutText mb-4 max-w-2xl text-4xl leading-none tracking-tight md:text-5xl xl:text-6xl font-light">
               Tulip Writer
             </h1>
-            <p className="text-appLayoutTextMuted text-appLayoutTextMuted mb-6 max-w-2xl font-light md:text-lg lg:mb-8 lg:text-xl">
-              Jumpstart your enterprise project with our feature-packed, high-performance Next.js boilerplate!
-              Experience rapid UI development, AI-powered code reviews, and an extensive suite of tools for a smooth and
-              enjoyable development process.
+            <p className="text-appLayoutTextMuted mb-6 max-w-2xl font-light md:text-lg lg:mb-8 lg:text-xl">
+              Write.
             </p>
             <Button href="https://github.com/Blazity/next-enterprise" className="mr-3">
               Get started
@@ -50,13 +49,13 @@ export default function Web() {
         <div className="mx-auto max-w-(--breakpoint-xl) px-4 py-8 sm:py-16 lg:px-6">
           <div className="justify-center space-y-8 md:grid md:grid-cols-2 md:gap-12 md:space-y-0 lg:grid-cols-3">
             {LP_GRID_ITEMS.map((singleItem) => (
-              <div key={singleItem.title} className="flex flex-col items-center justify-center text-center">
+              <GrainyDiv key={singleItem.title} className="flex flex-col h-md items-center justify-center text-center rounded-lg border border-appLayoutBorder p-2">
                 <div className="bg-appBackground text-appLayoutText mb-4 flex size-10 items-center justify-center rounded-full p-1.5 lg:size-12">
                   {singleItem.icon}
                 </div>
                 <h3 className="text-appLayoutText mb-2 text-xl font-bold">{singleItem.title}</h3>
                 <p className="text-appLayoutTextMuted">{singleItem.description}</p>
-              </div>
+              </GrainyDiv>
             ))}
           </div>
         </div>
