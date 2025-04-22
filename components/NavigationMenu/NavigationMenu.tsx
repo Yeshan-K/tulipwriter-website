@@ -53,12 +53,11 @@ export function NavigationMenu() {
             className={`${!isOpen && "hidden"} w-full items-center justify-between md:order-1 md:flex md:w-auto`}
             id="navbar-cta"
           >
-            <ul className="mt-4 flex flex-col rounded-lg border border-appLayoutBorder p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:p-0 rtl:space-x-reverse">
-     
+            <ul className="border-appLayoutBorder mt-4 flex flex-col rounded-lg border p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:p-0 rtl:space-x-reverse">
               <li>
                 <Link
                   href="#"
-                  className="block rounded-sm px-3 py-2 text-appLayoutText hover:bg-appLayoutInverseHover md:p-0 md:hover:bg-transparent "
+                  className="text-appLayoutText hover:bg-appLayoutInverseHover block rounded-sm px-3 py-2 md:p-0 md:hover:bg-transparent"
                 >
                   About
                 </Link>
