@@ -1,8 +1,10 @@
 import { Metadata } from "next"
 import { Button } from "components/Button/Button"
 
-import { LP_GRID_ITEMS } from "lp-items"
 import { GrainyDiv } from "components/GrainyDiv/GrainyDiv"
+
+import { LP_GRID_ITEMS } from "lp-items"
+import { FeatureView } from "components/FeatureView/FeatureView"
 
 export const metadata: Metadata = {
   title: "Next.js Enterprise Boilerplate",
@@ -72,29 +74,12 @@ export default function Web() {
       <section className="bg-appBackground mb-4 px-4 md:px-12 lg:px-6">
         <div className="border-appLayoutBorder mx-auto max-w-(--breakpoint-xl) rounded-xl px-4 pt-4 pb-6 lg:px-6">
           <div className="mr-auto place-self-center">
-            <h2 className="text-appLayoutText mb-5 px-1 max-w-2xl text-3xl leading-none font-light tracking-tight md:text-4xl xl:text-5xl ">
+            <h2 className="text-appLayoutText mb-5 max-w-2xl px-1 text-3xl leading-none font-light tracking-tight md:text-4xl xl:text-5xl">
               Features{" "}
             </h2>
           </div>
           <div className="justify-center space-y-4 md:grid md:grid-cols-2 md:gap-4 md:space-y-0 lg:grid-cols-3 lg:gap-6">
-            {LP_GRID_ITEMS.map((singleItem) => (
-              <GrainyDiv
-                key={singleItem.title}
-                className="border-appLayoutBorder flex h-fit flex-col items-center justify-start gap-3 rounded-lg border px-4 pt-3 pb-5 text-center font-sans"
-              >
-                <header className="flex h-[2.8rem] w-full items-center justify-start gap-4">
-                  <div className="bg-appBackgroundAccent text-appLayoutText flex size-10 items-center justify-center rounded-full p-1.5 lg:size-12">
-                    {singleItem.icon}
-                  </div>
-                  <div className="text-appLayoutText w-fit items-center justify-start pb-px text-xl font-thin">
-                    {singleItem.title}
-                  </div>
-                </header>
-                <div className="text-appLayoutTextMuted overflow-x-ellipsis flex h-fit w-full items-center justify-start overflow-x-hidden pl-1 text-nowrap">
-                  {singleItem.description}
-                </div>
-              </GrainyDiv>
-            ))}
+            <FeatureView features={LP_GRID_ITEMS} />
           </div>
         </div>
       </section>

@@ -13,10 +13,11 @@ export interface GrainyDivProps {
   restingPosX?: number
   restingPosY?: number
   gradientSize?: number
+  active?: boolean
 }
 
 export function GrainyDiv(props: Readonly<GrainyDivProps>) {
-  const { className, disabled = false, children, restingPosX = 0, restingPosY = 50, gradientSize = 125 } = props
+  const { className, active = false, disabled = false, children, restingPosX = 0, restingPosY = 50, gradientSize = 125 } = props
 
   const grainyDivRef = useRef(null)
 
@@ -52,7 +53,7 @@ export function GrainyDiv(props: Readonly<GrainyDivProps>) {
         handleMouseMove()
       }}
       onMouseLeave={handleMouseLeave}
-      className={`${className} `}
+      className={`${className} transition-colors ease-out duration-200 ${active && "bg-appLayoutInverseHover"}`}
       style={{
         backgroundBlendMode: "color",
         backgroundSize: "100%",
