@@ -1,97 +1,97 @@
-import { CaretDownIcon } from "@radix-ui/react-icons"
-import * as NavigationMenu from "@radix-ui/react-navigation-menu"
-import classNames from "classnames"
+"use client"
+
+import { motion } from "motion/react"
 import Link from "next/link"
-import { forwardRef } from "react"
+import { useState } from "react"
 
-export default () => (
-  <NavigationMenu.Root className="NavigationMenuRoot flex-none">
-    <NavigationMenu.List className="NavigationMenuList">
-      <NavigationMenu.Item>
-        <NavigationMenu.Trigger className="NavigationMenuTrigger">
-          Learn <CaretDownIcon className="CaretDown" aria-hidden />
-        </NavigationMenu.Trigger>
-        <NavigationMenu.Content className="NavigationMenuContent">
-          <ul className="List one">
-            <li style={{ gridRow: "span 3" }}>
-              <NavigationMenu.Link asChild>
-                <Link className="Callout" href="/">
-                  <svg aria-hidden width="38" height="38" viewBox="0 0 25 25" fill="white">
-                    <path d="M12 25C7.58173 25 4 21.4183 4 17C4 12.5817 7.58173 9 12 9V25Z"></path>
-                    <path d="M12 0H4V8H12V0Z"></path>
-                    <path d="M17 8C19.2091 8 21 6.20914 21 4C21 1.79086 19.2091 0 17 0C14.7909 0 13 1.79086 13 4C13 6.20914 14.7909 8 17 8Z"></path>
-                  </svg>
-                  <div className="CalloutHeading">Radix Primitives</div>
-                  <p className="CalloutText">Unstyled, accessible components for React.</p>
+export function NavigationMenu() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <motion.div className="border-appLayoutBorder mx-auto flex h-fit max-w-(--breakpoint-xl) items-center justify-start rounded-xl border lg:px-4">
+      <nav className="w-full border-gray-200 bg-white dark:bg-gray-900">
+        <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
+          <Link href="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+          </Link>
+          <div className="flex space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
+            <button
+              type="button"
+              className="rounded-lg bg-blue-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Get started
+            </button>
+            <button
+              data-collapse-toggle="navbar-cta"
+              type="button"
+              onClick={() => {
+                setIsOpen(!isOpen)
+              }}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:ring-2 focus:ring-gray-200 focus:outline-none md:hidden dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              aria-controls="navbar-cta"
+              aria-expanded="false"
+            >
+              <span className="sr-only">Open main menu</span>
+              <svg
+                className="h-5 w-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 17 14"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M1 1h15M1 7h15M1 13h15"
+                />
+              </svg>
+            </button>
+          </div>
+          <div
+            className={`${!isOpen && "hidden"} w-full items-center justify-between md:order-1 md:flex md:w-auto`}
+            id="navbar-cta"
+          >
+            <ul className="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 rtl:space-x-reverse dark:border-gray-700 dark:bg-gray-800 md:dark:bg-gray-900">
+              <li>
+                <Link
+                  href="#"
+                  className="block rounded-sm bg-blue-700 px-3 py-2 text-white md:bg-transparent md:p-0 md:text-blue-700 md:dark:text-blue-500"
+                  aria-current="page"
+                >
+                  Home
                 </Link>
-              </NavigationMenu.Link>
-            </li>
-
-            <ListItem href="https://stitches.dev/" title="Stitches">
-              CSS-in-JS with best-in-class developer experience.
-            </ListItem>
-            <ListItem href="/colors" title="Colors">
-              Beautiful, thought-out palettes with auto dark mode.
-            </ListItem>
-            <ListItem href="https://icons.radix-ui.com/" title="Icons">
-              A crisp set of 15x15 icons, balanced and consistent.
-            </ListItem>
-          </ul>
-        </NavigationMenu.Content>
-      </NavigationMenu.Item>
-
-      <NavigationMenu.Item>
-        <NavigationMenu.Trigger className="NavigationMenuTrigger">
-          Overview <CaretDownIcon className="CaretDown" aria-hidden />
-        </NavigationMenu.Trigger>
-        <NavigationMenu.Content className="NavigationMenuContent">
-          <ul className="List two">
-            <ListItem title="Introduction" href="/primitives/docs/overview/introduction">
-              Build high-quality, accessible design systems and web apps.
-            </ListItem>
-            <ListItem title="Getting started" href="/primitives/docs/overview/getting-started">
-              A quick tutorial to get you up and running with Radix Primitives.
-            </ListItem>
-            <ListItem title="Styling" href="/primitives/docs/guides/styling">
-              Unstyled and compatible with any styling solution.
-            </ListItem>
-            <ListItem title="Animation" href="/primitives/docs/guides/animation">
-              Use CSS keyframes or any animation library of your choice.
-            </ListItem>
-            <ListItem title="Accessibility" href="/primitives/docs/overview/accessibility">
-              Tested in a range of browsers and assistive technologies.
-            </ListItem>
-            <ListItem title="Releases" href="/primitives/docs/overview/releases">
-              Radix Primitives releases and their changelogs.
-            </ListItem>
-          </ul>
-        </NavigationMenu.Content>
-      </NavigationMenu.Item>
-
-      <NavigationMenu.Item>
-        <NavigationMenu.Link className="NavigationMenuLink" href="https://github.com/radix-ui">
-          Github
-        </NavigationMenu.Link>
-      </NavigationMenu.Item>
-
-      <NavigationMenu.Indicator className="NavigationMenuIndicator">
-        <div className="Arrow" />
-      </NavigationMenu.Indicator>
-    </NavigationMenu.List>
-
-    <div className="ViewportPosition">
-      <NavigationMenu.Viewport className="NavigationMenuViewport" />
-    </div>
-  </NavigationMenu.Root>
-)
-
-const ListItem = forwardRef<HTMLAnchorElement, React.AnchorHTMLAttributes<HTMLAnchorElement> & { title: string }>(({ className, children, title, ...props }, forwardedRef) => (
-  <li>
-    <NavigationMenu.Link asChild>
-      <a className={classNames("ListItemLink", className)} {...props} ref={forwardedRef}>
-        <div className="ListItemHeading">{title}</div>
-        <p className="ListItemText">{children}</p>
-      </a>
-    </NavigationMenu.Link>
-  </li>
-))
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  className="block rounded-sm px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  className="block rounded-sm px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+                >
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  className="block rounded-sm px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+                >
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </motion.div>
+  )
+}

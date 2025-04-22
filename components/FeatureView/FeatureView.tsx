@@ -1,8 +1,8 @@
 "use client"
 
 import { JSX } from "react"
-import { useAppStore } from "app/store/appStore"
 import { GrainyDiv } from "components/GrainyDiv/GrainyDiv"
+import { useAppStore } from "store/appStore"
 
 export interface FeatureViewProps {
   features: Array<{ title: string; description: string; icon: JSX.Element }>
@@ -29,7 +29,7 @@ export function FeatureView(props: Readonly<FeatureViewProps>) {
               onClick={() => {
                 setSelectedFeature(index)
               }}
-              className="h-fit w-full px-4 pt-3 pb-5 flex flex-col items-center justify-start gap-3 text-center "
+              className="flex h-fit w-full flex-col items-center justify-start gap-3 px-4 pt-3 pb-5 text-center"
             >
               <header className="flex h-[2.8rem] w-full items-center justify-start gap-4">
                 <div className="bg-appBackgroundAccent text-appLayoutText flex size-10 items-center justify-center rounded-full p-1.5 lg:size-12">
