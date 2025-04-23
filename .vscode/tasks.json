@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Firebase emulators: debug",
+        "type": "shell",
+        "command": "firebase emulators:start --debug",
+        "presentation": {
+          "panel": "dedicated"
+        }
+      },
+      {
+        "label": "Next.js: run",
+        "type": "npm",
+        "script": "dev",
+        "presentation": {
+          "panel": "dedicated"
+        }
+      },
+    ]
+  }
