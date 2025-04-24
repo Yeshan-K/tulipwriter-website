@@ -3,24 +3,22 @@
 
 import { Button, Fieldset, Group, PasswordInput, TextInput } from "@mantine/core"
 import { useForm } from "@mantine/form"
+import { redirect, useRouter } from "next/navigation"
+import { useState } from "react"
 import { useAuth } from "../../../components/AuthProvider"
 import { signInWithEmail } from "../../actions/auth"
 
 export default function LoginPage() {
-  // const [state, formAction] = useFormState(
-  //   (_: unknown, formData: FormData) => {
-  //     const email = formData.get("email") as string
-  //     const password = formData.get("password") as string
-  //     return signInWithEmail(email, password)
-  //   },
-  //   { success: false }
-  // )
-  const { user } = useAuth()
+  const { user, loading, refreshAuth } = useAuth()
+
+  const router = useRouter()
+  const [error, setError] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm({
     mode: "uncontrolled",
+    onSubmitPreventDefault: "always",
     initialValues: {
-      name: "",
       email: "",
       password: "",
     },
@@ -30,10 +28,37 @@ export default function LoginPage() {
     },
   })
 
+  const handleSubmit = async (values: { email: string; password: string }) => {
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      console.log(values)
+      const result = await signInWithEmail(values.email, values.password)
+      console.log(result)
+      if (result.error) {
+        setError(result.error)
+      } else {
+        router.push("/account") // Redirect on success
+      }
+    } catch (error) {
+      setError("An unexpected error occurred")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  console.log(user)
+
+  if (loading && user) {
+    console.log(user)
+    redirect("/account")
+  }
+
   return (
     <section className="bg-appBackground">
       <div className="mx-auto grid max-w-(--breakpoint-md) px-4 font-sans md:px-12">
-        <form onSubmit={form.onSubmit((values) => console.log(values))}>
+        <form onSubmit={form.onSubmit(handleSubmit)}>
           <Fieldset legend="Login" variant="unstyled" radius="lg">
             <TextInput
               key={form.key("email")}
@@ -52,22 +77,13 @@ export default function LoginPage() {
               placeholder="password"
             />
             <Group justify="flex-end" mt="md">
-              <Button variant="outline" type="submit">Submit</Button>
+              <Button variant="outline" type="submit">
+                Submit
+              </Button>
             </Group>
           </Fieldset>
         </form>
       </div>
     </section>
-  )
-
-  return (
-    <div>
-      <form action={formAction}>
-        <input type="email" name="email" required />
-        <input type="password" name="password" required />
-        <button type="submit">Login</button>
-      </form>
-      {state?.error && <p className="text-red-500">{state.error}</p>}
-    </div>
   )
 }

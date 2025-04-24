@@ -4,7 +4,7 @@ import { adminAuth } from "./firebaseAdmin"
 
 export async function getCurrentUser() {
   const cookieStore = await cookies()
-  const session = cookieStore.get("session")?.value
+  const session = cookieStore.get("__session")?.value
 
   if (!session) return null
 

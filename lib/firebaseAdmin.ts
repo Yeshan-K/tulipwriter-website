@@ -1,5 +1,5 @@
 import { cert, getApp, getApps, initializeApp } from "firebase-admin/app"
-import { getAuth } from "firebase-admin/auth"
+import {  getAuth } from "firebase-admin/auth"
 
 const admin =
   getApps().length > 0

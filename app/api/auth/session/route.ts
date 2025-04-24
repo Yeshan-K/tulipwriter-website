@@ -3,19 +3,47 @@ import { NextResponse } from "next/server"
 import { adminAuth } from "../../../../lib/firebaseAdmin"
 
 export async function POST(request: Request) {
-  const { token } = (await request.json()) as { token: string }
-
   try {
-    const decodedToken = await adminAuth.verifyIdToken(token)
+    const { token } = (await request.json()) as { token: string }
 
-    if (decodedToken) {
-      return NextResponse.json({ status: "success" })
+    if (!token) {
+      return NextResponse.json({ error: "Authorization token required" }, { status: 400 })
     }
+
+    // Create session cookie
+    const expiresIn = 60 * 60 * 24 * 5 * 1000 // 5 days
+    const sessionCookie = await adminAuth.createSessionCookie(token, { expiresIn })
+
+    // Set secure HTTP-only cookie
+    const response = NextResponse.json({ status: "success" })
+    response.cookies.set({
+      name: "__session",
+      value: sessionCookie,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: expiresIn,
+      path: "/",
+    })
+
+    return response
   } catch (error) {
-    return NextResponse.json({ error: "Invalid token" }, { status: 401 })
+    console.error("Session creation error:", error)
+    return NextResponse.json({ error: "Invalid or expired token" }, { status: 401 })
   }
 }
 
 export async function DELETE() {
-  return NextResponse.json({ status: "success" })
+  try {
+    // Add token revocation logic if needed
+    const response = NextResponse.json({ status: "success" })
+
+    // Clear session cookie
+    response.cookies.delete("__session")
+
+    return response
+  } catch (error) {
+    console.error("Logout error:", error)
+    return NextResponse.json({ error: "Failed to logout" }, { status: 500 })
+  }
 }
