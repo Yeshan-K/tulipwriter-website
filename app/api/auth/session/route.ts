@@ -3,7 +3,7 @@ import { NextResponse } from "next/server"
 import { adminAuth } from "../../../../lib/firebaseAdmin"
 
 export async function POST(request: Request) {
-  const { token } = await request.json()
+  const { token } = (await request.json()) as { token: string }
 
   try {
     const decodedToken = await adminAuth.verifyIdToken(token)
