@@ -9,7 +9,7 @@ const styles = {
   },
 }
 
-export default function Page({ favoriteColor = "blue" }: { favoriteColor: string }) {
+export default function Web({ favoriteColor = "blue" }: { favoriteColor: string }) {
   return (
     <div>
       <div style={styles.content}>
