@@ -1,10 +1,7 @@
 import { Metadata } from "next"
 import { Button } from "components/Button/Button"
-
-import { GrainyDiv } from "components/GrainyDiv/GrainyDiv"
-
-import { LP_GRID_ITEMS } from "lp-items"
 import { FeatureView } from "components/FeatureView/FeatureView"
+import { LP_GRID_ITEMS } from "lp-items"
 
 export const metadata: Metadata = {
   title: "Tulip Writer",

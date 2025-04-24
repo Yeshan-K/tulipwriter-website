@@ -25,6 +25,6 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.mjs", "jest.config.js", ".next/types/**/*.ts", "eslint.config.mjs"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.mjs", "jest.config.js", ".next/types/**/*.ts", "eslint.config.mjs", "lib/firebase.ts", "lib/firebase/firebaseAdmin.js", "app/api/login.js"],
   "exclude": ["node_modules"]
 }

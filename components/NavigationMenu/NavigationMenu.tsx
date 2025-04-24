@@ -47,16 +47,17 @@ export function NavigationMenu() {
         <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between gap-4 py-4 md:justify-start md:p-4">
           {/* ... (Logo and button code remains the same) */}
 
-          <Link href="#" className="flex items-center space-x-3 px-4 rtl:space-x-reverse">
+          <Link href="/" className="flex items-center space-x-3 px-4 rtl:space-x-reverse">
             <span className="self-center text-2xl font-thin whitespace-nowrap dark:text-white">Tulip Writer</span>
           </Link>
           <div className="flex space-x-3 md:order-3 md:space-x-0 rtl:space-x-reverse">
-            <button
+            <Link
+              href="/login"
               type="button"
               className="text-appLayoutText focus:ring-appLayoutBorder text-md ml-6 rounded-lg bg-green-900 px-4 py-2 text-center font-medium hover:bg-green-700 focus:ring-4 focus:outline-none"
             >
               Sign in
-            </button>
+            </Link>
             <button
               data-collapse-toggle="navbar-cta"
               type="button"
