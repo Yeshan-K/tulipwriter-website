@@ -8,8 +8,11 @@ export async function signUpWithEmail(email: string, password: string) {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password)
     return { success: true, user: userCredential.user }
-  } catch (error: any) {
-    return { error: error.message }
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { error: error.message }
+    }
+    return { error: "An unknown error occurred" }
   }
 }
 
@@ -23,8 +26,11 @@ export async function signInWithEmail(email: string, password: string) {
     }
 
     return { success: true }
-  } catch (error: any) {
-    return { error: error.message }
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { error: error.message }
+    }
+    return { error: "An unknown error occurred" }
   }
 }
 
@@ -32,7 +38,10 @@ export async function signInWithGoogle() {
   try {
     await signInWithPopup(auth, googleProvider)
     return { success: true }
-  } catch (error: any) {
-    return { error: error.message }
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return { error: error.message }
+    }
+    return { error: "An unknown error occurred" }
   }
 }
