@@ -9,7 +9,7 @@ const styles = {
   },
 }
 
-export default function Web({ favoriteColor = "blue" }: { favoriteColor: string }) {
+export default function Web() {
   return (
     <div>
       <div style={styles.content}>
@@ -19,7 +19,7 @@ export default function Web({ favoriteColor = "blue" }: { favoriteColor: string 
             This page requires authentication. It will do a server-side redirect (307) to the login page if the auth
             cookies are not set.
           </p>
-          <p>Your favorite color is: {favoriteColor}</p>
+          <p>Your favorite color is: blue</p>
         </div>
       </div>
     </div>
