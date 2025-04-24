@@ -10,16 +10,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     url: "https://tulipwriter-website.vercel.app/",
-    images: [
-      
-    ],
+    images: [],
   },
 }
 
 export default function Web() {
   return (
     <>
-      <section className="bg-appBackground">
+      <section className="bg-appBackground mb-4 lg:mb-8">
         <div className="mx-auto grid max-w-(--breakpoint-lg) px-8 py-8 pb-1 text-start md:px-24 lg:py-16 lg:pb-2">
           <div className="mr-auto place-self-center">
             <h1 className="text-appLayoutText mb-4 max-w-2xl text-4xl leading-none font-light tracking-tight md:text-5xl xl:text-6xl">
@@ -30,36 +28,20 @@ export default function Web() {
             </p>
           </div>
         </div>
-        <div className="mx-auto mb-4 grid max-w-(--breakpoint-lg) gap-2 px-4 text-center md:grid-cols-3 md:px-12 lg:mb-8 lg:grid-cols-6">
+        <div className="mx-auto grid max-w-(--breakpoint-lg) gap-2 px-4 text-center md:grid-cols-3 md:px-12 lg:grid-cols-6">
           <Button href="#" className="col-span-2">
             Download for Windows
           </Button>
-          <Button
-            className=""
-            href="#"
-            intent="secondary"
-          >
+          <Button className="" href="#" intent="secondary">
             MacOS
           </Button>
-          <Button
-            className=""
-            href="#"
-            intent="secondary"
-          >
+          <Button className="" href="#" intent="secondary">
             Linux
           </Button>
-          <Button
-            className=""
-            href="#"
-            intent="secondary"
-          >
+          <Button className="" href="#" intent="secondary">
             Android
           </Button>
-          <Button
-            className=""
-            href="#"
-            intent="secondary"
-          >
+          <Button className="" href="#" intent="secondary">
             iOS
           </Button>
         </div>

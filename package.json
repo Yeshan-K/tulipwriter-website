@@ -22,6 +22,11 @@
     "coupling-graph": "npx madge --extensions js,jsx,ts,tsx,css,md,mdx ./ --exclude '.next|tailwind.config.js|reset.d.ts|prettier.config.js|postcss.config.js|playwright.config.ts|next.config.js|next-env.d.ts|instrumentation.ts|e2e/|README.md|.storybook/|.eslintrc.js' --image graph.svg"
   },
   "dependencies": {
+    "@mantine/core": "^7.17.5",
+    "@mantine/form": "^7.17.5",
+    "@mantine/hooks": "^7.17.5",
+    "@mantine/notifications": "^7.17.5",
+    "@mantine/nprogress": "^7.17.5",
     "@next/bundle-analyzer": "^15.1.6",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-checkbox": "^1.0.4",
@@ -110,7 +115,9 @@
     "jest-environment-jsdom": "^29.7.0",
     "mkdirp": "^3.0.1",
     "patch-package": "^8.0.0",
-    "postcss": "^8",
+    "postcss": "^8.5.3",
+    "postcss-preset-mantine": "^1.17.0",
+    "postcss-simple-vars": "^7.0.1",
     "postinstall-postinstall": "^2.1.0",
     "prettier": "3.0.3",
     "prettier-plugin-tailwindcss": "^0.6.10",

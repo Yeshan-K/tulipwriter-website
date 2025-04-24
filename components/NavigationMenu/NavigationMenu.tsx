@@ -106,7 +106,7 @@ export function NavigationMenu() {
                     <li className="w-full overflow-hidden md:w-fit" key={linkItem.label}>
                       <Link
                         href={linkItem.link}
-                        className="text-appLayoutText border-appLayoutBorder md:text-appLayoutTextMuted md:hover:text-appLayoutText hover:bg-appLayoutInverseHover flex h-full items-center justify-start rounded-lg border px-5 py-2 text-lg md:justify-center md:border-0 md:p-0 md:text-lg md:hover:bg-transparent"
+                        className="text-appLayoutText border-appLayoutBorder md:text-appLayoutTextMuted md:hover:text-appLayoutText hover:bg-appLayoutInverseHover flex h-full items-center justify-start rounded-lg border px-5 py-2 text-lg md:justify-center md:border-0 md:p-0 md:pt-[6px] md:text-lg md:hover:bg-transparent"
                       >
                         {linkItem.label}
                       </Link>
