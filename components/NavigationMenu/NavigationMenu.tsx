@@ -94,7 +94,7 @@ export function NavigationMenu() {
                     }}
                     variant="unstyled"
                     classNames={{
-                      root: "focus:text-appLayoutText active:bg-appLayoutInverseHover disabled:active:bg-transparent px-2 md:px-4 text-lg h-fit w-fit font-light bg-transparent  border-0  border-appLayoutTextMuted text-appLayoutTextMuted px-2 py-1 overflow-hidden font-serif hover:border-white hover:text-appLayoutText hover:bg-transparent scale-[1.0] hover:scale-[1.00] disabled:hover:scale-[1.0] overflow-hidden disabled:hover:border-appLayoutTextMuted disabled:border-appLayoutTextMuted disabled:text-appLayoutTextMuted transition-colors duration-100",
+                      root: "focus:text-appLayoutText active:bg-appLayoutInverseHover disabled:active:bg-transparent px-2 md:px-4 text-lg h-fit w-fit font-light bg-transparent  border-0  border-appLayoutTextMuted text-appLayoutTextMuted px-2 py-1 overflow-hidden font-serif hover:border-white hover:text-appLayoutText hover:bg-transparent scale-[1.0] hover:scale-[1.00] disabled:hover:scale-[1.0] overflow-hidden disabled:hover:border-appLayoutTextMuted disabled:border-appLayoutTextMuted disabled:text-appLayoutBorder transition-colors duration-100",
                     }}
                     disabled={isOnLoginPage}
                     radius="xl"
@@ -108,7 +108,7 @@ export function NavigationMenu() {
                     }}
                     variant="unstyled"
                     classNames={{
-                      root: "focus:text-appLayoutText active:bg-appLayoutInverseHover disabled:active:bg-transparent px-2 md:px-4 text-lg h-fit w-fit font-light bg-transparent  border-0  border-appLayoutTextMuted text-appLayoutTextMuted px-2 py-1 overflow-hidden font-serif hover:border-white hover:text-appLayoutText hover:bg-transparent scale-[1.0] hover:scale-[1.00] disabled:hover:scale-[1.0] overflow-hidden disabled:hover:border-appLayoutTextMuted disabled:border-appLayoutTextMuted disabled:text-appLayoutTextMuted transition-colors duration-100",
+                      root: "focus:text-appLayoutText active:bg-appLayoutInverseHover disabled:active:bg-transparent px-2 md:px-4 text-lg h-fit w-fit font-light bg-transparent  border-0  border-appLayoutTextMuted text-appLayoutTextMuted px-2 py-1 overflow-hidden font-serif hover:border-white hover:text-appLayoutText hover:bg-transparent scale-[1.0] hover:scale-[1.00] disabled:hover:scale-[1.0] overflow-hidden disabled:hover:border-appLayoutTextMuted disabled:border-appLayoutTextMuted disabled:text-appLayoutBorder transition-colors duration-100",
                     }}
                     disabled={isOnSignupPage}
                     radius="xl"
