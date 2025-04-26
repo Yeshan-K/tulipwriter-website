@@ -5,12 +5,9 @@ import { Button, Fieldset, Group, PasswordInput, TextInput } from "@mantine/core
 import { useForm } from "@mantine/form"
 import { redirect, useRouter } from "next/navigation"
 import { useState } from "react"
-import { useAuth } from "../../../components/AuthProvider"
-import { signInWithEmail } from "../../actions/auth"
+import { signIn } from "lib/auth"
 
 export default function LoginPage() {
-  const { user, loading, refreshAuth } = useAuth()
-
   const router = useRouter()
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -34,25 +31,20 @@ export default function LoginPage() {
 
     try {
       console.log(values)
-      const result = await signInWithEmail(values.email, values.password)
-      console.log(result)
-      if (result.error) {
-        setError(result.error)
+      const isOk = await signIn(values.email, values.password)
+      console.log(isOk)
+
+      if (!isOk) {
+        setError("Login failed")
       } else {
         router.push("/account") // Redirect on success
       }
     } catch (error) {
+      console.error(error)
       setError("An unexpected error occurred")
     } finally {
       setIsLoading(false)
     }
-  }
-
-  console.log(user)
-
-  if (loading && user) {
-    console.log(user)
-    redirect("/account")
   }
 
   return (

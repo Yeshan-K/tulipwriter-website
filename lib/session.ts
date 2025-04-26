@@ -1,37 +1,52 @@
 // lib/session.ts
+import { SessionCookieOptions } from "firebase-admin/auth"
 import { cookies } from "next/headers"
 import { adminAuth } from "./firebaseAdmin"
 
-export async function getCurrentUser() {
-  const cookieStore = await cookies()
-  const session = cookieStore.get("__session")?.value
+export type APIResponse<T = object> = { success: true; data: T } | { success: false; error: string };
 
-  if (!session) return null
+export async function isUserAuthenticated(session: string | undefined = undefined) {
+  const _session = session ?? (await getSession())
+  if (!_session) return false
 
   try {
-    const decodedToken = await adminAuth.verifySessionCookie(session)
-    return decodedToken
+    const isRevoked = !(await adminAuth.verifySessionCookie(_session, true))
+    return !isRevoked
   } catch (error) {
-    return null
+    console.log(error)
+    return false
   }
 }
 
-export async function createSessionCookie(idToken: string) {
-  const expiresIn = 60 * 60 * 24 * 5 * 1000 // 5 days
-  const sessionCookie = await adminAuth.createSessionCookie(idToken, { expiresIn })
-  const cookieStore = await cookies()
+export async function getCurrentUser() {
+  const session = await getSession()
 
-  cookieStore.set("__session", sessionCookie, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    maxAge: expiresIn,
-    path: "/",
-  })
+  if (!(await isUserAuthenticated(session))) {
+    return null
+  }
+
+  const decodedIdToken = await adminAuth.verifySessionCookie(session!)
+  const currentUser = await adminAuth.getUser(decodedIdToken.uid)
+
+  return currentUser
 }
 
-export async function destroySession() {
-  const cookieStore = await cookies()
+async function getSession() {
+  try {
+    const cookieStore = await cookies()
+    return cookieStore.get("__session")?.value
+  } catch (error) {
+    console.error("Failed to retrieve session cookie:", error)
+    return undefined
+  }
+}
 
-  cookieStore.delete("__session")
+export async function createSessionCookie(idToken: string, sessionCookieOptions: SessionCookieOptions) {
+  return adminAuth.createSessionCookie(idToken, sessionCookieOptions)
+}
+
+export async function revokeAllSessions(session: string) {
+  const decodedIdToken = await adminAuth.verifySessionCookie(session)
+
+  return await adminAuth.revokeRefreshTokens(decodedIdToken.sub)
 }
