@@ -6,7 +6,6 @@ import "@mantine/core/styles.css"
 const theme = {}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  
   return (
     <html lang="en" {...mantineHtmlProps}>
       <head>

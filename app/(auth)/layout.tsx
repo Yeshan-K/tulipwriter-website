@@ -7,7 +7,7 @@ import { isUserAuthenticated } from "../../lib/session"
 export default async function ProtectedLayout({ children }: { readonly children: React.ReactNode }) {
   if (await isUserAuthenticated()) {
     redirect("/account")
+  } else {
+    return <>{children}</>
   }
-
-  return <>{children}</>
 }

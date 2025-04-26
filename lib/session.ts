@@ -1,4 +1,6 @@
 // lib/session.ts
+import "server-only"
+
 import { SessionCookieOptions } from "firebase-admin/auth"
 import { cookies } from "next/headers"
 import { adminAuth } from "./firebaseAdmin"

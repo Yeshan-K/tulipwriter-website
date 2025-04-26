@@ -3,14 +3,19 @@
 
 import { Button, Fieldset, Group, PasswordInput, TextInput } from "@mantine/core"
 import { useForm } from "@mantine/form"
-import { redirect, useRouter } from "next/navigation"
+
+import { useRouter } from "next/navigation"
+
 import { useState } from "react"
 import { signIn } from "lib/auth"
+import { useAppStore } from "store/appStore"
 
 export default function LoginPage() {
   const router = useRouter()
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+
+  const setLoggedIn = useAppStore((state) => state.setLoggedIn)
 
   const form = useForm({
     mode: "uncontrolled",
@@ -37,6 +42,7 @@ export default function LoginPage() {
       if (!isOk) {
         setError("Login failed")
       } else {
+        setLoggedIn("Logged in")
         router.push("/account") // Redirect on success
       }
     } catch (error) {

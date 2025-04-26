@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react"
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { isLoggedIn } from "./Auth/IsLoggedIn"
+import { useAppStore } from "store/appStore"
 
 const NAV_LINKS = [
   {
@@ -21,7 +22,8 @@ const NAV_LINKS = [
 ]
 
 export function NavigationMenu() {
-  const [isLoggedInState, setisLoggedInState] = useState<string | null>(null)
+  const loggedIn = useAppStore((state) => state.loggedIn)
+  const setLoggedIn = useAppStore((state) => state.setLoggedIn)
 
   const [isOpen, setIsOpen] = useState(true)
 
@@ -36,7 +38,7 @@ export function NavigationMenu() {
     window.addEventListener("resize", checkScreenSize)
 
     const callisLoggedIn = async () => {
-      setisLoggedInState(await isLoggedIn())
+      setLoggedIn(await isLoggedIn())
     }
 
     callisLoggedIn()
@@ -64,24 +66,24 @@ export function NavigationMenu() {
             <span className="self-center text-2xl font-thin whitespace-nowrap dark:text-white">Tulip Writer</span>
           </Link>
           <div className="flex space-x-3 md:order-3 md:space-x-0 rtl:space-x-reverse">
+            {loggedIn &&
+              (loggedIn == "Logged in" ? (
+                <Link
+                  href={"/account"}
+                  className="text-appLayoutText border-appLayoutBorder md:text-appLayoutTextMuted md:hover:text-appLayoutText hover:bg-appLayoutInverseHover flex h-full items-center justify-start rounded-lg border px-5 py-2 text-lg md:justify-center md:border-0 md:p-0 md:pt-[4px] md:text-lg md:hover:bg-transparent"
+                >
+                  Account
+                </Link>
+              ) : (
+                <Link
+                  href={"/login"}
+                  className="text-appLayoutText border-appLayoutBorder md:text-appLayoutTextMuted md:hover:text-appLayoutText hover:bg-appLayoutInverseHover flex h-full items-center justify-start rounded-lg border px-5 py-2 text-lg md:justify-center md:border-0 md:p-0 md:pt-[4px] md:text-lg md:hover:bg-transparent"
+                >
+                  login
+                </Link>
+              ))}
 
-            {isLoggedInState && (isLoggedInState == "Logged in" ? (
-              <Link
-                href={"/account"}
-                className="text-appLayoutText border-appLayoutBorder md:text-appLayoutTextMuted md:hover:text-appLayoutText hover:bg-appLayoutInverseHover flex h-full items-center justify-start rounded-lg border px-5 py-2 text-lg md:justify-center md:border-0 md:p-0 md:pt-[4px] md:text-lg md:hover:bg-transparent"
-              >
-                Account
-              </Link>
-            ) : (
-              <Link
-                href={"/login"}
-                className="text-appLayoutText border-appLayoutBorder md:text-appLayoutTextMuted md:hover:text-appLayoutText hover:bg-appLayoutInverseHover flex h-full items-center justify-start rounded-lg border px-5 py-2 text-lg md:justify-center md:border-0 md:p-0 md:pt-[4px] md:text-lg md:hover:bg-transparent"
-              >
-                login
-              </Link>
-            ))}
-
-            {!isLoggedInState && (
+            {!loggedIn && (
               <p className="text-appLayoutText border-appLayoutBorder md:text-appLayoutTextMuted md:hover:text-appLayoutText hover:bg-appLayoutInverseHover flex h-full items-center justify-start rounded-lg border px-5 py-2 text-lg md:justify-center md:border-0 md:p-0 md:pt-[4px] md:text-lg md:hover:bg-transparent">
                 loading
               </p>
