@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { isLoggedIn } from "./Auth/IsLoggedIn"
 import { useAppStore } from "store/appStore"
-import { Box, Button } from "@mantine/core"
+import { Box, Button, Loader } from "@mantine/core"
 import { usePathname, useRouter } from "next/navigation"
 
 import classes from "../../styles/mantine.module.css"
@@ -29,9 +29,11 @@ export function NavigationMenu() {
   const loggedIn = useAppStore((state) => state.loggedIn)
   const setLoggedIn = useAppStore((state) => state.setLoggedIn)
 
-  const pathname = usePathname()  
+  const pathname = usePathname()
 
   const isOnLoginPage = pathname === "/login"
+
+  const isOnSignupPage = pathname === "/signup"
 
   const router = useRouter()
 
@@ -75,35 +77,48 @@ export function NavigationMenu() {
           <Link href="/" className="flex items-center space-x-3 px-4 rtl:space-x-reverse">
             <span className="self-center text-2xl font-thin whitespace-nowrap dark:text-white">Tulip Writer</span>
           </Link>
-          <div className="flex space-x-3 font-sans md:order-3 md:space-x-0 rtl:space-x-reverse">
+          <div className="flex items-center gap-0 space-x-0 font-sans md:order-3 md:gap-0 md:space-x-0 rtl:space-x-reverse">
             {loggedIn &&
               (loggedIn == "Logged in" ? (
                 <Link
-                  href={"/account"}
+                  href={"/account/home"}
                   className="text-appLayoutText border-appLayoutBorder md:text-appLayoutTextMuted md:hover:text-appLayoutText hover:bg-appLayoutInverseHover flex h-full items-center justify-start rounded-lg border px-5 py-2 text-lg md:justify-center md:border-0 md:p-0 md:pt-[4px] md:text-lg md:hover:bg-transparent"
                 >
                   Account
                 </Link>
               ) : (
-                <Button
-                  onClick={() => {
-                    router.push("/login")
-                  }}
-                  variant="unstyled"
-                  classNames={{
-                    root: "focus:ring-2 focus:ring-appLayoutBorder text-lg h-fit w-fit font-light bg-transparent rounded-lg border border-appLayoutText text-appLayoutText px-6 py-1 overflow-hidden font-serif hover:border-white hover:text-white hover:bg-transparent hover:scale-[1.01] transition-all duration-100 disabled:hover:scale-[1] disabled:hover:border-appLayoutTextMuted disabled:border-appLayoutTextMuted disabled:text-appLayoutTextMuted "
-                  }}
-                  disabled={isOnLoginPage}
-                >
-                  Login
-                </Button>
+                <>
+                  <Button
+                    onClick={() => {
+                      router.push("/login")
+                    }}
+                    variant="unstyled"
+                    classNames={{
+                      root: "focus:text-appLayoutText active:bg-appLayoutInverseHover disabled:active:bg-transparent px-2 md:px-4 text-lg h-fit w-fit font-light bg-transparent  border-0  border-appLayoutTextMuted text-appLayoutTextMuted px-2 py-1 overflow-hidden font-serif hover:border-white hover:text-appLayoutText hover:bg-transparent scale-[1.0] hover:scale-[1.00] disabled:hover:scale-[1.0] overflow-hidden disabled:hover:border-appLayoutTextMuted disabled:border-appLayoutTextMuted disabled:text-appLayoutTextMuted transition-colors duration-100",
+                    }}
+                    disabled={isOnLoginPage}
+                    radius="xl"
+                  >
+                    Login
+                  </Button>
+
+                  <Button
+                    onClick={() => {
+                      router.push("/signup")
+                    }}
+                    variant="unstyled"
+                    classNames={{
+                      root: "focus:text-appLayoutText active:bg-appLayoutInverseHover disabled:active:bg-transparent px-2 md:px-4 text-lg h-fit w-fit font-light bg-transparent  border-0  border-appLayoutTextMuted text-appLayoutTextMuted px-2 py-1 overflow-hidden font-serif hover:border-white hover:text-appLayoutText hover:bg-transparent scale-[1.0] hover:scale-[1.00] disabled:hover:scale-[1.0] overflow-hidden disabled:hover:border-appLayoutTextMuted disabled:border-appLayoutTextMuted disabled:text-appLayoutTextMuted transition-colors duration-100",
+                    }}
+                    disabled={isOnSignupPage}
+                    radius="xl"
+                  >
+                    Sign up
+                  </Button>
+                </>
               ))}
 
-            {!loggedIn && (
-              <p className="text-appLayoutText border-appLayoutBorder md:text-appLayoutTextMuted md:hover:text-appLayoutText hover:bg-appLayoutInverseHover flex h-full items-center justify-start rounded-lg border px-5 py-2 text-lg md:justify-center md:border-0 md:p-0 md:pt-[4px] md:text-lg md:hover:bg-transparent">
-                loading
-              </p>
-            )}
+            {!loggedIn && <Loader size={30} type="dots" color="white" classNames={{ root: "text-appLayoutBorder" }} />}
 
             <button
               data-collapse-toggle="navbar-cta"

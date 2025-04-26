@@ -13,20 +13,11 @@ import { NavigationMenu } from "components/NavigationMenu/NavigationMenu"
 import "@mantine/core/styles.css"
 import "styles/tailwind.css"
 
-
 const appLayoutBorderLight = colorsTuple("hsl(0, 0%, 14.9%)")
 const appLayoutBorderDark = colorsTuple("hsl(0, 0%, 65.9%)")
 
 const theme = createTheme({
-  colors: {
-    appLayoutBorderLight,
-    appLayoutBorderDark,
-    appLayoutBorder: virtualColor({
-      name: "appLayoutBorder",
-      light: "appLayoutBorderLight",
-      dark: "appLayoutBorderDark",
-    }),
-  },
+  activeClassName: "",
 })
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
