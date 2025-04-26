@@ -5,6 +5,10 @@ import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { isLoggedIn } from "./Auth/IsLoggedIn"
 import { useAppStore } from "store/appStore"
+import { Box, Button } from "@mantine/core"
+import { usePathname, useRouter } from "next/navigation"
+
+import classes from "../../styles/mantine.module.css"
 
 const NAV_LINKS = [
   {
@@ -24,6 +28,12 @@ const NAV_LINKS = [
 export function NavigationMenu() {
   const loggedIn = useAppStore((state) => state.loggedIn)
   const setLoggedIn = useAppStore((state) => state.setLoggedIn)
+
+  const pathname = usePathname()  
+
+  const isOnLoginPage = pathname === "/login"
+
+  const router = useRouter()
 
   const [isOpen, setIsOpen] = useState(true)
 
@@ -65,7 +75,7 @@ export function NavigationMenu() {
           <Link href="/" className="flex items-center space-x-3 px-4 rtl:space-x-reverse">
             <span className="self-center text-2xl font-thin whitespace-nowrap dark:text-white">Tulip Writer</span>
           </Link>
-          <div className="flex space-x-3 md:order-3 md:space-x-0 rtl:space-x-reverse">
+          <div className="flex space-x-3 font-sans md:order-3 md:space-x-0 rtl:space-x-reverse">
             {loggedIn &&
               (loggedIn == "Logged in" ? (
                 <Link
@@ -75,12 +85,18 @@ export function NavigationMenu() {
                   Account
                 </Link>
               ) : (
-                <Link
-                  href={"/login"}
-                  className="text-appLayoutText border-appLayoutBorder md:text-appLayoutTextMuted md:hover:text-appLayoutText hover:bg-appLayoutInverseHover flex h-full items-center justify-start rounded-lg border px-5 py-2 text-lg md:justify-center md:border-0 md:p-0 md:pt-[4px] md:text-lg md:hover:bg-transparent"
+                <Button
+                  onClick={() => {
+                    router.push("/login")
+                  }}
+                  variant="unstyled"
+                  classNames={{
+                    root: "focus:ring-2 focus:ring-appLayoutBorder text-lg h-fit w-fit font-light bg-transparent rounded-lg border border-appLayoutText text-appLayoutText px-6 py-1 overflow-hidden font-serif hover:border-white hover:text-white hover:bg-transparent hover:scale-[1.01] transition-all duration-100 disabled:hover:scale-[1] disabled:hover:border-appLayoutTextMuted disabled:border-appLayoutTextMuted disabled:text-appLayoutTextMuted "
+                  }}
+                  disabled={isOnLoginPage}
                 >
-                  login
-                </Link>
+                  Login
+                </Button>
               ))}
 
             {!loggedIn && (

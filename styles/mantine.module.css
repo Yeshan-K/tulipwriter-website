@@ -1,0 +1,5 @@
+.primaryButton {
+  border-color: hsl(var(--appLayoutBorder));
+  background-color: hsl(var(--appLayoutInverseHover));
+  color: black;
+}

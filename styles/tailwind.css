@@ -1,6 +1,12 @@
-@import "tailwindcss";
+@layer theme, base, components, utilities;
 
-@config '../tailwind.config.js';
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+
+
+@import "@mantine/core/styles.layer.css";
+
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
@@ -201,8 +207,4 @@
   --animate-exit-to-right: exitToRight 250ms ease;
 }
 
-/* reset
-  button,
-  p {
-    all: unset;
-  } */
+

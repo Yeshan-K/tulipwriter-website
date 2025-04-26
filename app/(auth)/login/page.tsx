@@ -57,7 +57,7 @@ export default function LoginPage() {
     <section className="bg-appBackground">
       <div className="mx-auto grid max-w-(--breakpoint-md) px-4 font-sans md:px-12">
         <form onSubmit={form.onSubmit(handleSubmit)}>
-          <Fieldset legend="Login" variant="unstyled" radius="lg">
+          <Fieldset legend="Login" radius="lg">
             <TextInput
               key={form.key("email")}
               {...form.getInputProps("email")}
@@ -75,7 +75,10 @@ export default function LoginPage() {
               placeholder="password"
             />
             <Group justify="flex-end" mt="md">
-              <Button variant="outline" type="submit">
+              <Button
+                variant="outline"
+                type="submit"
+              >
                 Submit
               </Button>
             </Group>
