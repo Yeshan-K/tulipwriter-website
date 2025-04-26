@@ -12,11 +12,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <ColorSchemeScript />
       </head>
-      <body className="dark h-screen max-h-screen w-screen max-w-screen overflow-hidden">
+      <body className="dark bg-appBackground h-screen max-h-screen w-screen max-w-screen overflow-hidden">
         <MantineProvider defaultColorScheme="dark">
           <div
             id="AppContainer"
-            className="bg-appBackground relative h-full w-full overflow-x-hidden overflow-y-auto overscroll-none font-serif"
+            className="bg-appBackground relative h-full w-full overflow-x-hidden overflow-y-scroll overscroll-none font-serif"
           >
             <div className="NavigationMenu bg-appBackground border-appLayoutBorder sticky top-0 h-fit w-full border-b px-4 md:border-0 md:px-12 lg:px-6">
               <NavigationMenu key="Navigation Menu" />

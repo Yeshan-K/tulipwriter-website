@@ -11,6 +11,26 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
+  *::-moz-scrollbar {
+    width: 10px;
+    background: transparent;
+  }
+
+  *::-moz-scrollbar-thumb {
+    background: #353535;
+    border-radius: 2px;
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #353535;
+    border-radius: 2px;
+  }
+
   *,
   ::after,
   ::before,
@@ -180,8 +200,6 @@
   --animate-exit-to-left: exitToLeft 250ms ease;
   --animate-exit-to-right: exitToRight 250ms ease;
 }
-
-
 
 /* reset
   button,
