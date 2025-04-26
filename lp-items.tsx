@@ -19,9 +19,10 @@ export const LP_GRID_ITEMS = [
       </svg>
     ),
   },
+
   {
-    title: "Distraction Free",
-    description: "Write for hours without distractions and clutter.",
+    title: "Collaborate",
+    description: "Work with others.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +35,7 @@ export const LP_GRID_ITEMS = [
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"
+          d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
         />
       </svg>
     ),
@@ -59,7 +60,7 @@ export const LP_GRID_ITEMS = [
 
   {
     title: "Google Drive Integration",
-    description: "Export/import your work directly to Google Drive.",
+    description: "Synchronize your work with Google Drive.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -219,9 +220,10 @@ export const LP_GRID_ITEMS = [
       </svg>
     ),
   },
+
   {
-    title: "Placeholder",
-    description: "A placeholder description.",
+    title: "Distraction Free",
+    description: "Write for hours without distractions and clutter.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -234,10 +236,9 @@ export const LP_GRID_ITEMS = [
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+          d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"
         />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
     ),
-  }
+  },
 ]
