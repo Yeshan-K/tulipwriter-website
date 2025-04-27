@@ -56,14 +56,14 @@ export default function LoginPage() {
 
   return (
     <section className="bg-appBackground">
-      <div className="mx-auto mt-4 grid max-w-(--breakpoint-sm) px-4 font-sans md:mt-8 md:px-12">
+      <div className="mx-auto max-w-(--breakpoint-xl) items-center justify-start rounded-xl lg:px-0">
         <form onSubmit={form.onSubmit(handleLoginWithEmailAndPassword)}>
           <Fieldset
             variant="outline"
             legend="Login"
             classNames={{
               legend: "text-3xl pb-1 px-2 font-light",
-              root: "border bg-appBackgroundAccent border-appLayoutBorder font-serif w-full pt-2 pb-4 md:pb-6 px-4 md:px-6 flex flex-col gap-4 md:gap-4 shadow-sm shadow-appLayoutDarkHover",
+              root: "border max-w-(--breakpoint-sm) bg-appBackgroundAccent border-appLayoutBorder font-serif w-full pt-2 pb-4 md:pb-6 px-4 md:px-6 flex flex-col gap-4 md:gap-4 shadow-sm shadow-appLayoutDarkHover",
             }}
             radius="lg"
             pos="relative"
