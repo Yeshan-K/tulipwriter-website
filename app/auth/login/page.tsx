@@ -1,7 +1,7 @@
 // app/(auth)/login/page.tsx
 "use client"
 
-import { Button, Fieldset, Group, LoadingOverlay, PasswordInput, TextInput } from "@mantine/core"
+import { Box, Button, Fieldset, Group, LoadingOverlay, PasswordInput, TextInput } from "@mantine/core"
 import { useForm } from "@mantine/form"
 
 import { useRouter } from "next/navigation"
@@ -46,17 +46,9 @@ export default function LoginPage() {
     async ({ email, password }: { email: string; password: string }) => {
       setHasLogged(false)
 
-      const credential = await signInWithEmailAndPassword(getFirebaseAuth(), email, password)
+      const auth = getFirebaseAuth()
 
-      const idToken = await credential.user.getIdToken()
-
-      await fetch("/api/login", {
-        headers: {
-          Authorization: `Bearer ${idToken}`,
-        },
-      })
-
-      router.push("/")
+      await handleLogin(await signInWithEmailAndPassword(auth, email, password))
 
       setHasLogged(true)
     }
@@ -74,9 +66,9 @@ export default function LoginPage() {
               root: "border bg-appBackgroundAccent border-appLayoutBorder font-serif w-full pt-2 pb-4 md:pb-6 px-4 md:px-6 flex flex-col gap-4 md:gap-4 shadow-sm shadow-appLayoutDarkHover",
             }}
             radius="lg"
+            pos="relative"
           >
             <LoadingOverlay visible={isEmailLoading} zIndex={1000} overlayProps={{ radius: "sm", blur: 2 }} />
-
             <TextInput
               size="lg"
               classNames={{

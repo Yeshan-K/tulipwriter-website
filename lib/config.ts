@@ -22,3 +22,27 @@ export const clientConfig = {
   databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
 };
+
+
+export const authConfig = {
+  apiKey: clientConfig.apiKey,
+  cookieName: 'AuthToken',
+  cookieSignatureKeys: [
+    process.env.COOKIE_SECRET_CURRENT!,
+    process.env.COOKIE_SECRET_PREVIOUS!
+  ],
+  cookieSerializeOptions: {
+    path: '/',
+    httpOnly: true,
+    secure: false, // Set this to true on HTTPS environments
+    sameSite: 'lax' as const,
+    maxAge: 12 * 60 * 60 * 24 // twelve days
+  },
+  serviceAccount: serverConfig.serviceAccount,
+  // Set to false in Firebase Hosting environment due to https://stackoverflow.com/questions/44929653/firebase-cloud-function-wont-store-cookie-named-other-than-session
+  enableMultipleCookies: true,
+  // Set to false if you're not planning to use `signInWithCustomToken` Firebase Client SDK method
+  enableCustomToken: true,
+  experimental_enableTokenRefreshOnExpiredKidHeader: true,
+  debug: true
+};
