@@ -7,7 +7,6 @@ import { useForm } from "@mantine/form"
 import { useRouter } from "next/navigation"
 
 import { useState } from "react"
-import { signIn, signUpWithEmail } from "lib/auth"
 import { useAppStore } from "store/appStore"
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth"
 import { firebaseApp } from "lib/firebase"

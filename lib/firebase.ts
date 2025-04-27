@@ -1,5 +1,13 @@
 import { getApp, initializeApp } from "firebase/app"
-import { connectAuthEmulator, getAuth, GoogleAuthProvider, inMemoryPersistence, setPersistence } from "firebase/auth"
+import {
+  Auth,
+  connectAuthEmulator,
+  getAuth,
+  GoogleAuthProvider,
+  inMemoryPersistence,
+  setPersistence,
+  signOut,
+} from "firebase/auth"
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore"
 import { clientConfig } from "./config"
 
@@ -40,4 +48,8 @@ export function getFirebaseAuth() {
   // See: https://github.com/awinogrodzki/next-firebase-auth-edge/issues/143
 
   return auth
+}
+
+export const logout = async (auth: Auth): Promise<void> => {
+  return signOut(auth)
 }

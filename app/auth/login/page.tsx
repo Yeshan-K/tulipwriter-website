@@ -46,9 +46,17 @@ export default function LoginPage() {
     async ({ email, password }: { email: string; password: string }) => {
       setHasLogged(false)
 
-      const auth = getFirebaseAuth()
+      const credential = await signInWithEmailAndPassword(getFirebaseAuth(), email, password)
 
-      await handleLogin(await signInWithEmailAndPassword(auth, email, password))
+      const idToken = await credential.user.getIdToken()
+
+      await fetch("/api/login", {
+        headers: {
+          Authorization: `Bearer ${idToken}`,
+        },
+      })
+
+      router.push("/")
 
       setHasLogged(true)
     }

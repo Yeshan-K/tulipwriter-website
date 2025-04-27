@@ -1,27 +1,22 @@
 import { NextRequest, NextResponse } from "next/server"
 import { authMiddleware, redirectToHome, redirectToLogin } from "next-firebase-auth-edge"
-import { authConfig, clientConfig, serverConfig } from "./lib/config"
+import { clientConfig, serverConfig } from "./lib/config"
 
 const PUBLIC_PATHS = ["/auth/signup", "/auth/login", "/reset-password", "/"]
+
+const LANDING_PATHS = ["/"]
 
 export async function middleware(request: NextRequest) {
   return authMiddleware(request, {
     loginPath: "/api/login",
     logoutPath: "/api/logout",
-    refreshTokenPath: "/api/refresh-token",
-    debug: authConfig.debug,
-    enableMultipleCookies: authConfig.enableMultipleCookies,
-    enableCustomToken: authConfig.enableCustomToken,
-    apiKey: authConfig.apiKey,
-    cookieName: authConfig.cookieName,
-    cookieSerializeOptions: authConfig.cookieSerializeOptions,
-    cookieSignatureKeys: authConfig.cookieSignatureKeys,
-    serviceAccount: authConfig.serviceAccount,
-    experimental_enableTokenRefreshOnExpiredKidHeader: authConfig.experimental_enableTokenRefreshOnExpiredKidHeader,
-    dynamicCustomClaimsKeys: ["someCustomClaim"],
-    handleValidToken: async ({ token, decodedToken, customToken }, headers) => {
-      // Authenticated user should not be able to access /login, /register and /reset-password routes
-      if (PUBLIC_PATHS.includes(request.nextUrl.pathname)) {
+    apiKey: clientConfig.apiKey,
+    cookieName: serverConfig.cookieName,
+    cookieSignatureKeys: serverConfig.cookieSignatureKeys,
+    cookieSerializeOptions: serverConfig.cookieSerializeOptions,
+    serviceAccount: serverConfig.serviceAccount,
+    handleValidToken: async ({ token, decodedToken }, headers) => {
+      if (PUBLIC_PATHS.includes(request.nextUrl.pathname) && !LANDING_PATHS.includes(request.nextUrl.pathname)) {
         return redirectToHome(request, {
           path: "/account/home",
         })
@@ -33,7 +28,9 @@ export async function middleware(request: NextRequest) {
         },
       })
     },
-    handleInvalidToken: async (_reason) => {
+    handleInvalidToken: async (reason) => {
+      console.info("Missing or malformed credentials", { reason })
+
       return redirectToLogin(request, {
         path: "/auth/login",
         publicPaths: PUBLIC_PATHS,

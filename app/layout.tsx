@@ -12,12 +12,12 @@ import { getTokens } from "next-firebase-auth-edge"
 import { AuthProvider } from "components/Auth/AuthProvider"
 import { toUser } from "components/Auth/user"
 import { NavigationMenu } from "components/NavigationMenu/NavigationMenu"
-import { authConfig } from "../lib/config"
 
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
 import "@mantine/core/styles.css"
 import "styles/tailwind.css"
+import { clientConfig, serverConfig } from "lib/config"
 
 const theme = createTheme({
   activeClassName: "",
@@ -25,9 +25,12 @@ const theme = createTheme({
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const tokens = await getTokens(await cookies(), {
-    ...authConfig,
-    headers: await headers(),
+    apiKey: clientConfig.apiKey,
+    cookieName: serverConfig.cookieName,
+    cookieSignatureKeys: serverConfig.cookieSignatureKeys,
+    serviceAccount: serverConfig.serviceAccount,
   })
+
   const user = tokens ? toUser(tokens) : null
 
   return (

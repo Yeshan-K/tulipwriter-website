@@ -1,7 +1,6 @@
 "use client"
 
 import { Button } from "@mantine/core"
-import { signOut } from "lib/auth"
 import { useRouter } from "next/navigation"
 
 import React from "react"
@@ -22,12 +21,8 @@ export default function Page() {
   const router = useRouter()
 
   const handleSignOut = async () => {
-    const isOk = await signOut()
-
-    if (isOk) {
-      setLoggedIn("Not logged in")
-      router.push("/")
-    }
+    
+    console.log("SIGN OUT!");
   }
 
   return (
