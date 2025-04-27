@@ -29,18 +29,18 @@ export function FeatureView(props: Readonly<FeatureViewProps>) {
               onClick={() => {
                 setSelectedFeature(index)
               }}
-              className="flex h-fit w-full flex-col items-center justify-start gap-3 px-4 pt-3 pb-5 text-center"
+              className="flex h-fit w-full flex-col items-center justify-start gap-3 px-4 pt-3 pb-3 md:pb-5 text-center"
             >
-              <header className="flex h-[2.8rem] w-full items-center justify-start gap-4">
+              <header className="flex h-[2.8rem] w-full items-center justify-start gap-4 text-md md:text-xl">
                 <div className="bg-appBackgroundAccent text-appLayoutText flex size-10 items-center justify-center rounded-full p-1.5 lg:size-12">
                   {singleItem.icon}
                 </div>
-                <div className={`text-appLayoutText w-fit items-center justify-start pb-px text-xl font-thin`}>
+                <div className={`text-appLayoutText w-fit items-center justify-start pb-pxfont-thin`}>
                   {singleItem.title}
                 </div>
               </header>
               <div
-                className={`text-appLayoutTextMuted overflow-x-ellipsis flex h-fit w-full items-center justify-start overflow-x-hidden pl-1 text-nowrap ${
+                className={`text-appLayoutTextMuted overflow-x-ellipsis hidden h-fit w-full items-center justify-start overflow-x-hidden pl-1 text-nowrap md:flex ${
                   active && "text-appBackground"
                 }`}
               >

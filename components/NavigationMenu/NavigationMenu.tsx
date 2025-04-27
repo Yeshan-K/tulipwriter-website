@@ -64,11 +64,11 @@ export function NavigationMenu({ auth }: Readonly<{ auth: boolean }>) {
   return (
     <div className="mx-auto flex max-w-(--breakpoint-xl) items-center justify-start rounded-xl md:h-[5rem] md:border-0 lg:px-0">
       <nav className="border-appLayoutBorder bg-appBackground w-full">
-        <div className="mx-auto flex h-full max-w-screen-xl flex-wrap items-center justify-between gap-4 py-4 md:justify-start md:p-4">
+        <div className="mx-auto flex h-full max-w-screen-xl flex-wrap items-center justify-between gap-2 md:gap-4 py-4 md:justify-start md:p-4">
           {/* ... (Logo and button code remains the same) */}
 
-          <Link href="/" className="flex items-center space-x-3 px-4 rtl:space-x-reverse">
-            <span className="self-center text-2xl font-thin whitespace-nowrap dark:text-white">Tulip Writer</span>
+          <Link href="/" className="flex items-center space-x-3 px-0 sm:px-4 md:px-4 rtl:space-x-reverse">
+            <span className="self-center text-2xl font-thin whitespace-nowrap dark:text-white pl-2">Tulip Writer</span>
           </Link>
           <div className="flex items-center gap-0 space-x-0 font-sans md:order-3 md:gap-0 md:space-x-0 rtl:space-x-reverse">
             {!auth ? (

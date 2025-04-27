@@ -100,7 +100,7 @@ export const LP_GRID_ITEMS = [
     ),
   },
   {
-    title: "Fictional Worlds, Flawless Spelling",
+    title: "Fictional Spelling",
     description: "Add invented names to a custom dictionary.",
     icon: (
       <svg

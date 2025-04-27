@@ -43,9 +43,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           <MantineProvider theme={theme} defaultColorScheme="dark">
             <div
               id="AppContainer"
-              className="bg-appBackground relative flex h-full w-full flex-col overflow-x-hidden overflow-y-scroll overscroll-none font-serif"
+              className="bg-appBackground relative flex h-full w-full flex-col overflow-x-hidden pl-[10px] overflow-y-scroll overscroll-none font-serif"
             >
-              <div className="NavigationMenu bg-appBackground border-appLayoutBorder sticky top-0 h-fit w-full border-b px-4 md:border-0 md:px-12 lg:px-6">
+              <div className="NavigationMenu bg-appBackground border-appLayoutBorder sticky top-0 h-fit w-full border-b px-0 md:border-0 md:px-12 lg:px-6">
                 <NavigationMenu auth={!tokens} key="Navigation Menu" />
               </div>
               {children}
