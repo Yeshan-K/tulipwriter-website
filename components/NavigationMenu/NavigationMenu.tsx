@@ -8,8 +8,6 @@ import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { auth } from "lib/firebase"
 import { useAppStore } from "store/appStore"
-import { isLoggedIn } from "../Auth/IsLoggedIn"
-import { refreshLoginOnServer } from "lib/auth"
 
 const NAV_LINKS = [
   {
@@ -49,22 +47,6 @@ export function NavigationMenu({ auth }: Readonly<{ auth: boolean }>) {
 
     checkScreenSize()
     window.addEventListener("resize", checkScreenSize)
-
-    // auth.onAuthStateChanged((user) => {
-    //   if (user) {
-    //     console.log("AUTH STATE CHANGED USER DETECTED: ", user)
-    //     // callisLoggedIn()
-    //   } else {
-    //     console.log("AUTH STATE CHANGED USER NOT DETECTED")
-    //   }
-    // })
-
-    // const callisLoggedIn = async () => {
-    //   const isOk = await refreshLoginOnServer()
-    //   console.log("REFRESH LOGIN IN NAV MENU RESULT: ", isOk)
-    //   const LoggedInState = isOk === "resbody" ? "Logged in" : "Not logged in"
-    //   setLoggedIn(LoggedInState)
-    // }
 
     return () => {
       window.removeEventListener("resize", checkScreenSize)
