@@ -26,7 +26,7 @@ export default function Page() {
 
     if (isOk) {
       setLoggedIn("Not logged in")
-      router.push("/login")
+      router.push("/")
     }
   }
 

@@ -1,21 +1,33 @@
 // app/(auth)/login/page.tsx
 "use client"
 
-import { Button, Fieldset, Group, PasswordInput, TextInput } from "@mantine/core"
+import { Button, Fieldset, Group, LoadingOverlay, PasswordInput, TextInput } from "@mantine/core"
 import { useForm } from "@mantine/form"
 
 import { useRouter } from "next/navigation"
 
 import { useState } from "react"
-import { signIn } from "lib/auth"
+import { useLoadingCallback } from "react-loading-hook"
 import { useAppStore } from "store/appStore"
+import { getAuth, signInWithEmailAndPassword, UserCredential } from "firebase/auth"
+import { firebaseApp, getFirebaseAuth } from "lib/firebase"
+import { loginWithCredential } from "api"
+import { useRedirectParam } from "components/Auth/useRedirectParam"
+import { useRedirectAfterLogin } from "components/Auth/useRedirectAfterLogin"
 
 export default function LoginPage() {
   const router = useRouter()
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [hasLogged, setHasLogged] = useState(false)
 
-  const setLoggedIn = useAppStore((state) => state.setLoggedIn)
+  const redirect = useRedirectParam()
+  const redirectAfterLogin = useRedirectAfterLogin()
+
+  async function handleLogin(credential: UserCredential) {
+    await loginWithCredential(credential)
+    redirectAfterLogin()
+  }
 
   const form = useForm({
     mode: "uncontrolled",
@@ -23,7 +35,6 @@ export default function LoginPage() {
     initialValues: {
       email: "",
       password: "",
-      passwordConfirm: ""
     },
 
     validate: {
@@ -31,46 +42,38 @@ export default function LoginPage() {
     },
   })
 
-  const handleSubmit = async (values: { email: string; password: string }) => {
-    setIsLoading(true)
-    setError(null)
+  const [handleLoginWithEmailAndPassword, isEmailLoading, emailPasswordError] = useLoadingCallback(
+    async ({ email, password }: { email: string; password: string }) => {
+      setHasLogged(false)
 
-    try {
-      console.log(values)
-      const isOk = await signIn(values.email, values.password)
-      console.log(isOk)
+      const auth = getFirebaseAuth()
 
-      if (!isOk) {
-        setError("Login failed")
-      } else {
-        setLoggedIn("Logged in")
-        router.push("/account") // Redirect on success
-      }
-    } catch (error) {
-      console.error(error)
-      setError("An unexpected error occurred")
-    } finally {
-      setIsLoading(false)
+      await handleLogin(await signInWithEmailAndPassword(auth, email, password))
+
+      setHasLogged(true)
     }
-  }
+  )
 
   return (
     <section className="bg-appBackground">
       <div className="mx-auto mt-4 grid max-w-(--breakpoint-sm) px-4 font-sans md:mt-8 md:px-12">
-        <form onSubmit={form.onSubmit(handleSubmit)}>
+        <form onSubmit={form.onSubmit(handleLoginWithEmailAndPassword)}>
           <Fieldset
             variant="outline"
-            legend="Sign up"
+            legend="Login"
             classNames={{
               legend: "text-3xl pb-1 px-2 font-light",
-              root: "border border-appLayoutBorder font-serif w-full pt-2 pb-4 md:pb-6 px-4 md:px-6 flex flex-col gap-4 md:gap-4",
+              root: "border bg-appBackgroundAccent border-appLayoutBorder font-serif w-full pt-2 pb-4 md:pb-6 px-4 md:px-6 flex flex-col gap-4 md:gap-4 shadow-sm shadow-appLayoutDarkHover",
             }}
             radius="lg"
           >
+            <LoadingOverlay visible={isEmailLoading} zIndex={1000} overlayProps={{ radius: "sm", blur: 2 }} />
+
             <TextInput
               size="lg"
               classNames={{
-                input: "bg-transparent focus:bg-appLayoutInputBackground pb-[3px]",
+                input:
+                  "bg-transparent focus:bg-appBackground focus:border-appLayoutTextMuted border-appLayoutBorder pb-[3px]",
                 label: "text-lg mb-1 pl-1",
               }}
               key={form.key("email")}
@@ -82,8 +85,9 @@ export default function LoginPage() {
             <PasswordInput
               size="lg"
               classNames={{
-                innerInput: " focus:bg-appLayoutInputBackground pb-[3px]",
-                input: "bg-transparent ",
+                innerInput:
+                  " focus:bg-appBackground border border-appLayoutBorder overflow-hidden rounded-lg focus:border-appLayoutTextMuted pb-[3px]",
+                input: "bg-transparent border-none focus:border-appLayoutTextMuted",
                 label: "text-lg mb-1 pl-1",
               }}
               key={form.key("password")}
@@ -92,21 +96,6 @@ export default function LoginPage() {
               radius="md"
               placeholder="password"
             />
-
-            <PasswordInput
-              size="lg"
-              classNames={{
-                innerInput: " focus:bg-appLayoutInputBackground pb-[3px]",
-                input: "bg-transparent ",
-                label: "text-lg mb-1 pl-1",
-              }}
-              key={form.key("passwordConfirm")}
-              {...form.getInputProps("passwordConfirm")}
-              label="Confirm password"
-              radius="md"
-              placeholder="password"
-            />
-
             <Group justify="flex-end">
               <Button
                 radius="md"
@@ -118,7 +107,7 @@ export default function LoginPage() {
                 type="submit"
                 mt="sm"
               >
-                Sign up
+                Login
               </Button>
             </Group>
           </Fieldset>

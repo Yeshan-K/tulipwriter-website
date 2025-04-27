@@ -7,37 +7,48 @@ import {
   MantineTheme,
   virtualColor,
 } from "@mantine/core"
+import { cookies, headers } from "next/headers"
+import { getTokens } from "next-firebase-auth-edge"
+import { AuthProvider } from "components/Auth/AuthProvider"
+import { toUser } from "components/Auth/user"
 import { NavigationMenu } from "components/NavigationMenu/NavigationMenu"
+import { authConfig } from "../lib/config"
+
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
 import "@mantine/core/styles.css"
 import "styles/tailwind.css"
 
-const appLayoutBorderLight = colorsTuple("hsl(0, 0%, 14.9%)")
-const appLayoutBorderDark = colorsTuple("hsl(0, 0%, 65.9%)")
-
 const theme = createTheme({
   activeClassName: "",
 })
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const tokens = await getTokens(await cookies(), {
+    ...authConfig,
+    headers: await headers(),
+  })
+  const user = tokens ? toUser(tokens) : null
+
   return (
     <html lang="en" {...mantineHtmlProps}>
       <head>
         <ColorSchemeScript />
       </head>
       <body className="dark bg-appBackground h-screen max-h-screen w-screen max-w-screen overflow-hidden">
-        <MantineProvider theme={theme} defaultColorScheme="dark">
-          <div
-            id="AppContainer"
-            className="bg-appBackground relative h-full w-full overflow-x-hidden overflow-y-scroll overscroll-none font-serif"
-          >
-            <div className="NavigationMenu bg-appBackground border-appLayoutBorder sticky top-0 h-fit w-full border-b px-4 md:border-0 md:px-12 lg:px-6">
-              <NavigationMenu key="Navigation Menu" />
+        <AuthProvider user={user}>
+          <MantineProvider theme={theme} defaultColorScheme="dark">
+            <div
+              id="AppContainer"
+              className="bg-appBackground relative flex h-full w-full flex-col overflow-x-hidden overflow-y-scroll overscroll-none font-serif"
+            >
+              <div className="NavigationMenu bg-appBackground border-appLayoutBorder sticky top-0 h-fit w-full border-b px-4 md:border-0 md:px-12 lg:px-6">
+                <NavigationMenu auth={!tokens} key="Navigation Menu" />
+              </div>
+              {children}
             </div>
-            {children}
-          </div>
-        </MantineProvider>
+          </MantineProvider>
+        </AuthProvider>
       </body>
     </html>
   )

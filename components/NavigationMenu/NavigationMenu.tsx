@@ -1,14 +1,15 @@
 "use client"
 
+import { Button, Loader } from "@mantine/core"
+import { onAuthStateChanged } from "firebase/auth"
 import { AnimatePresence, motion } from "motion/react"
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
-import { isLoggedIn } from "./Auth/IsLoggedIn"
-import { useAppStore } from "store/appStore"
-import { Box, Button, Loader } from "@mantine/core"
 import { usePathname, useRouter } from "next/navigation"
-
-import classes from "../../styles/mantine.module.css"
+import { useEffect, useState } from "react"
+import { auth } from "lib/firebase"
+import { useAppStore } from "store/appStore"
+import { isLoggedIn } from "../Auth/IsLoggedIn"
+import { refreshLoginOnServer } from "lib/auth"
 
 const NAV_LINKS = [
   {
@@ -25,15 +26,15 @@ const NAV_LINKS = [
   },
 ]
 
-export function NavigationMenu() {
+export function NavigationMenu({ auth }: Readonly<{ auth: boolean }>) {
   const loggedIn = useAppStore((state) => state.loggedIn)
   const setLoggedIn = useAppStore((state) => state.setLoggedIn)
 
   const pathname = usePathname()
 
-  const isOnLoginPage = pathname === "/login"
+  const isOnLoginPage = pathname === "/auth/login"
 
-  const isOnSignupPage = pathname === "/signup"
+  const isOnSignupPage = pathname === "/auth/signup"
 
   const router = useRouter()
 
@@ -49,11 +50,21 @@ export function NavigationMenu() {
     checkScreenSize()
     window.addEventListener("resize", checkScreenSize)
 
-    const callisLoggedIn = async () => {
-      setLoggedIn(await isLoggedIn())
-    }
+    // auth.onAuthStateChanged((user) => {
+    //   if (user) {
+    //     console.log("AUTH STATE CHANGED USER DETECTED: ", user)
+    //     // callisLoggedIn()
+    //   } else {
+    //     console.log("AUTH STATE CHANGED USER NOT DETECTED")
+    //   }
+    // })
 
-    callisLoggedIn()
+    // const callisLoggedIn = async () => {
+    //   const isOk = await refreshLoginOnServer()
+    //   console.log("REFRESH LOGIN IN NAV MENU RESULT: ", isOk)
+    //   const LoggedInState = isOk === "resbody" ? "Logged in" : "Not logged in"
+    //   setLoggedIn(LoggedInState)
+    // }
 
     return () => {
       window.removeEventListener("resize", checkScreenSize)
@@ -78,47 +89,46 @@ export function NavigationMenu() {
             <span className="self-center text-2xl font-thin whitespace-nowrap dark:text-white">Tulip Writer</span>
           </Link>
           <div className="flex items-center gap-0 space-x-0 font-sans md:order-3 md:gap-0 md:space-x-0 rtl:space-x-reverse">
-            {loggedIn &&
-              (loggedIn == "Logged in" ? (
-                <Link
-                  href={"/account/home"}
-                  className="text-appLayoutText border-appLayoutBorder md:text-appLayoutTextMuted md:hover:text-appLayoutText hover:bg-appLayoutInverseHover flex h-full items-center justify-start rounded-lg border px-5 py-2 text-lg md:justify-center md:border-0 md:p-0 md:pt-[4px] md:text-lg md:hover:bg-transparent"
+            {!auth ? (
+              <Link
+                href={"/account/home"}
+                className="text-appLayoutText border-appLayoutBorder md:text-appLayoutTextMuted md:hover:text-appLayoutText hover:bg-appLayoutInverseHover flex h-full items-center justify-start rounded-lg border px-5 py-2 text-lg md:justify-center md:border-0 md:p-0 md:pt-[4px] md:text-lg md:hover:bg-transparent"
+              >
+                Account
+              </Link>
+            ) : (
+              <>
+                <Button
+                  onClick={() => {
+                    router.push("/auth/login")
+                  }}
+                  variant="unstyled"
+                  classNames={{
+                    root: "focus:text-appLayoutText active:bg-appLayoutInverseHover disabled:active:bg-transparent px-2 md:px-4 text-lg h-fit w-fit font-light bg-transparent  border-0  border-appLayoutTextMuted text-appLayoutTextMuted px-2 py-1 overflow-hidden font-serif hover:border-white hover:text-appLayoutText hover:bg-transparent scale-[1.0] hover:scale-[1.00] disabled:hover:scale-[1.0] overflow-hidden disabled:hover:border-appLayoutTextMuted disabled:border-appLayoutTextMuted disabled:text-appLayoutBorder transition-colors duration-100",
+                  }}
+                  disabled={isOnLoginPage}
+                  radius="xl"
                 >
-                  Account
-                </Link>
-              ) : (
-                <>
-                  <Button
-                    onClick={() => {
-                      router.push("/login")
-                    }}
-                    variant="unstyled"
-                    classNames={{
-                      root: "focus:text-appLayoutText active:bg-appLayoutInverseHover disabled:active:bg-transparent px-2 md:px-4 text-lg h-fit w-fit font-light bg-transparent  border-0  border-appLayoutTextMuted text-appLayoutTextMuted px-2 py-1 overflow-hidden font-serif hover:border-white hover:text-appLayoutText hover:bg-transparent scale-[1.0] hover:scale-[1.00] disabled:hover:scale-[1.0] overflow-hidden disabled:hover:border-appLayoutTextMuted disabled:border-appLayoutTextMuted disabled:text-appLayoutBorder transition-colors duration-100",
-                    }}
-                    disabled={isOnLoginPage}
-                    radius="xl"
-                  >
-                    Login
-                  </Button>
+                  Login
+                </Button>
 
-                  <Button
-                    onClick={() => {
-                      router.push("/signup")
-                    }}
-                    variant="unstyled"
-                    classNames={{
-                      root: "focus:text-appLayoutText active:bg-appLayoutInverseHover disabled:active:bg-transparent px-2 md:px-4 text-lg h-fit w-fit font-light bg-transparent  border-0  border-appLayoutTextMuted text-appLayoutTextMuted px-2 py-1 overflow-hidden font-serif hover:border-white hover:text-appLayoutText hover:bg-transparent scale-[1.0] hover:scale-[1.00] disabled:hover:scale-[1.0] overflow-hidden disabled:hover:border-appLayoutTextMuted disabled:border-appLayoutTextMuted disabled:text-appLayoutBorder transition-colors duration-100",
-                    }}
-                    disabled={isOnSignupPage}
-                    radius="xl"
-                  >
-                    Sign up
-                  </Button>
-                </>
-              ))}
+                <Button
+                  onClick={() => {
+                    router.push("/auth/signup")
+                  }}
+                  variant="unstyled"
+                  classNames={{
+                    root: "focus:text-appLayoutText active:bg-appLayoutInverseHover disabled:active:bg-transparent px-2 md:px-4 text-lg h-fit w-fit font-light bg-transparent  border-0  border-appLayoutTextMuted text-appLayoutTextMuted px-2 py-1 overflow-hidden font-serif hover:border-white hover:text-appLayoutText hover:bg-transparent scale-[1.0] hover:scale-[1.00] disabled:hover:scale-[1.0] overflow-hidden disabled:hover:border-appLayoutTextMuted disabled:border-appLayoutTextMuted disabled:text-appLayoutBorder transition-colors duration-100",
+                  }}
+                  disabled={isOnSignupPage}
+                  radius="xl"
+                >
+                  Sign up
+                </Button>
+              </>
+            )}
 
-            {!loggedIn && <Loader size={30} type="dots" color="white" classNames={{ root: "text-appLayoutBorder" }} />}
+            {/* {!loggedIn && <Loader size={30} type="dots" color="white" classNames={{ root: "text-appLayoutBorder" }} />} */}
 
             <button
               data-collapse-toggle="navbar-cta"
@@ -151,7 +161,7 @@ export function NavigationMenu() {
                 initial={{ height: isMd ? "3rem" : 0, opacity: isMd ? 1 : 0 }}
                 animate={{
                   height: isMd ? "3rem" : isOpen ? "10rem" : 0,
-                  opacity: isMd ? "3rem" : isOpen ? 1 : 0,
+                  opacity: isMd ? 1 : isOpen ? 1 : 0,
                 }}
                 exit={{ height: isMd ? 1 : 0, opacity: isMd ? 1 : 0 }}
                 transition={{ duration: 0.1 }}

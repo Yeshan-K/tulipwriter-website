@@ -7,8 +7,10 @@ import { useForm } from "@mantine/form"
 import { useRouter } from "next/navigation"
 
 import { useState } from "react"
-import { signIn } from "lib/auth"
+import { signIn, signUpWithEmail } from "lib/auth"
 import { useAppStore } from "store/appStore"
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth"
+import { firebaseApp } from "lib/firebase"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -35,16 +37,8 @@ export default function LoginPage() {
     setError(null)
 
     try {
-      console.log(values)
-      const isOk = await signIn(values.email, values.password)
-      console.log(isOk)
-
-      if (!isOk) {
-        setError("Login failed")
-      } else {
-        setLoggedIn("Logged in")
-        router.push("/account/home") // Redirect on success
-      }
+      await createUserWithEmailAndPassword(getAuth(firebaseApp), values.email, values.password)
+      router.push("/login")
     } catch (error) {
       console.error(error)
       setError("An unexpected error occurred")
@@ -59,7 +53,7 @@ export default function LoginPage() {
         <form onSubmit={form.onSubmit(handleSubmit)}>
           <Fieldset
             variant="outline"
-            legend="Login"
+            legend="Sign up"
             classNames={{
               legend: "text-3xl pb-1 px-2 font-light",
               root: "border border-appLayoutBorder font-serif w-full pt-2 pb-4 md:pb-6 px-4 md:px-6 flex flex-col gap-4 md:gap-4",
@@ -91,9 +85,19 @@ export default function LoginPage() {
               radius="md"
               placeholder="password"
             />
+
             <Group justify="flex-end">
-              <Button radius="md" classNames={{ root: "font-normal border border-appLayoutText text-appBackground bg-appLayoutText hover:bg-appLayoutTextMuted hover:text-appBackgroundAccent hover:border-appLayoutTextMuted" }} size="lg" variant="outline" type="submit" mt="sm">
-                Login
+              <Button
+                radius="md"
+                classNames={{
+                  root: "font-normal border border-appLayoutText text-appBackground bg-appLayoutText hover:bg-appLayoutTextMuted hover:text-appBackgroundAccent hover:border-appLayoutTextMuted",
+                }}
+                size="lg"
+                variant="outline"
+                type="submit"
+                mt="sm"
+              >
+                Sign up
               </Button>
             </Group>
           </Fieldset>

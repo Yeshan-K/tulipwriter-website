@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+
 import { Button } from "components/Button/Button"
 import { FeatureView } from "components/FeatureView/FeatureView"
 import { LP_GRID_ITEMS } from "lp-items"
