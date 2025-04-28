@@ -56,16 +56,16 @@ export default function LoginPage() {
 
   return (
     <section className="bg-appBackground flex grow-1 items-start justify-center pt-4 md:pt-12">
-      <div className="w-(--breakpoint-xl) max-w-(--breakpoint-xl) items-center justify-start rounded-xl lg:px-0">
-        <form className="h-fit w-full" onSubmit={form.onSubmit(handleLoginWithEmailAndPassword)}>
-          <LoadingOverlay visible={isEmailLoading} zIndex={1000} />
+      <div className="w-full items-center justify-start rounded-xl lg:px-0">
+        <form className="h-fit w-full md:w-fit mx-auto relative" onSubmit={form.onSubmit(handleLoginWithEmailAndPassword)}>
+          <LoadingOverlay visible={isEmailLoading} zIndex={1000} overlayProps={{ blur: 0, opacity: 0 }} />
 
           <Fieldset
             variant="unstyled"
             legend="Log in to your account"
             classNames={{
               legend: "text-3xl pb-1 px-2 mx-auto font-light",
-              root: "md:border rounded-xl overflow-hidden mx-auto xl:mx-auto max-w-(--breakpoint-sm) md:bg-appBackgroundAccent border-appLayoutBorder font-serif w-full pt-2 pb-4 md:pb-6 px-4 md:px-10 flex flex-col gap-4 md:gap-6 md:shadow-2xl shadow-appLayoutDarkHover",
+              root: "md:border rounded-xl overflow-hidden mx-auto xl:mx-auto w-full md:min-w-(--breakpoint-sm) max-w-(--breakpoint-sm) md:bg-appBackgroundAccent border-appLayoutBorder font-serif w-full pt-2 pb-4 md:pb-6 px-4 md:px-10 flex flex-col gap-4 md:gap-6 md:shadow-2xl shadow-appLayoutDarkHover",
             }}
             radius="lg"
             pos="relative"
