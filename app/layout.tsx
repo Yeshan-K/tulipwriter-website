@@ -45,7 +45,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
               id="AppContainer"
               className="bg-appBackground relative flex h-full w-full flex-col overflow-x-hidden pl-[10px] overflow-y-scroll overscroll-none font-serif"
             >
-              <div className="NavigationMenu bg-appBackground border-appLayoutBorder sticky top-0 h-fit w-full border-b px-0 md:border-0 md:px-12 lg:px-6">
+              <div className="NavigationMenu z-[1000] bg-appBackground border-appLayoutBorder sticky top-0 h-fit w-full border-b px-0 md:border-0 md:px-12 lg:px-6">
                 <NavigationMenu auth={!tokens} key="Navigation Menu" />
               </div>
               {children}

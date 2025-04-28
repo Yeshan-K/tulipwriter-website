@@ -1,7 +1,7 @@
 // app/(auth)/login/page.tsx
 "use client"
 
-import { Box, Button, Fieldset, Group, LoadingOverlay, PasswordInput, TextInput } from "@mantine/core"
+import { Box, Button, Divider, Fieldset, Group, LoadingOverlay, PasswordInput, TextInput } from "@mantine/core"
 import { useForm } from "@mantine/form"
 
 import { useRouter } from "next/navigation"
@@ -55,26 +55,27 @@ export default function LoginPage() {
   )
 
   return (
-    <section className="bg-appBackground">
-      <div className="mx-auto mt-4 md:mt-0 max-w-(--breakpoint-xl) items-center justify-start rounded-xl lg:px-0">
-        <form onSubmit={form.onSubmit(handleLoginWithEmailAndPassword)}>
+    <section className="bg-appBackground flex grow-1 items-start justify-center pt-4 md:pt-12">
+      <div className="w-(--breakpoint-xl) max-w-(--breakpoint-xl) items-center justify-start rounded-xl lg:px-0">
+        <form className="h-fit w-full" onSubmit={form.onSubmit(handleLoginWithEmailAndPassword)}>
+          <LoadingOverlay visible={isEmailLoading} zIndex={1000} />
+
           <Fieldset
-            variant="outline"
-            legend="Login"
+            variant="unstyled"
+            legend="Log in to your account"
             classNames={{
-              legend: "text-3xl pb-1 px-2 font-light",
-              root: "border mx-auto xl:ml-0 max-w-(--breakpoint-sm) bg-appBackgroundAccent border-appLayoutBorder font-serif w-full pt-2 pb-4 md:pb-6 px-4 md:px-6 flex flex-col gap-4 md:gap-4 shadow-sm shadow-appLayoutDarkHover",
+              legend: "text-3xl pb-1 px-2 mx-auto font-light",
+              root: "md:border rounded-xl overflow-hidden mx-auto xl:mx-auto max-w-(--breakpoint-sm) md:bg-appBackgroundAccent border-appLayoutBorder font-serif w-full pt-2 pb-4 md:pb-6 px-4 md:px-10 flex flex-col gap-4 md:gap-6 md:shadow-2xl shadow-appLayoutDarkHover",
             }}
             radius="lg"
             pos="relative"
           >
-            <LoadingOverlay visible={isEmailLoading} zIndex={1000} overlayProps={{ radius: "sm", blur: 2 }} />
             <TextInput
               size="lg"
               classNames={{
                 input:
-                  "bg-transparent focus:bg-appBackground focus:border-appLayoutTextMuted border-appLayoutBorder pb-[3px]",
-                label: "text-lg mb-1 pl-1",
+                  "focus:bg-appLayoutInputBackground  bg-appBackgroundAccent md:bg-appBackground focus:border-appLayoutTextMuted border-appLayoutBorder pb-[3px]",
+                label: "text-lg mb-2 pl-1 text-appLayoutTextMuted",
               }}
               key={form.key("email")}
               {...form.getInputProps("email")}
@@ -82,34 +83,43 @@ export default function LoginPage() {
               placeholder="Email"
               radius="md"
             />
-            <PasswordInput
-              size="lg"
-              classNames={{
-                innerInput:
-                  " focus:bg-appBackground border border-appLayoutBorder overflow-hidden rounded-lg focus:border-appLayoutTextMuted pb-[3px]",
-                input: "bg-transparent border-none focus:border-appLayoutTextMuted",
-                label: "text-lg mb-1 pl-1",
-              }}
-              key={form.key("password")}
-              {...form.getInputProps("password")}
-              label="Password"
-              radius="md"
-              placeholder="password"
-            />
-            <Group justify="flex-end">
+
+            <div className="flex h-fit w-full flex-col items-end gap-3 md:flex-row md:items-center">
+              <PasswordInput
+                size="lg"
+                classNames={{
+                  root: "w-full md:grow-1",
+                  innerInput:
+                    " focus:bg-appLayoutInputBackground bg-appBackgroundAccent md:bg-appBackground border border-appLayoutBorder overflow-hidden rounded-lg focus:border-appLayoutTextMuted pb-[3px]",
+                  input: "bg-transparent border-none focus:border-appLayoutTextMuted",
+                  label: "text-lg mb-2 pl-1 text-appLayoutTextMuted",
+                }}
+                key={form.key("password")}
+                {...form.getInputProps("password")}
+                label="Password"
+                radius="md"
+                placeholder="password"
+              />
               <Button
                 radius="md"
                 classNames={{
-                  root: "font-normal border border-appLayoutText text-appBackground bg-appLayoutText hover:bg-appLayoutTextMuted hover:text-appBackgroundAccent hover:border-appLayoutTextMuted",
+                  root: "w-1/3 md:w-fit mt-3 md:mt-9 font-normal border border-appLayoutText text-appBackground bg-appLayoutText hover:bg-appLayoutTextMuted hover:text-appBackgroundAccent hover:border-appLayoutTextMuted",
                 }}
                 size="lg"
                 variant="outline"
                 type="submit"
-                mt="sm"
               >
-                Login
+                <span className="icon-[ep--right] h-full w-[2rem]"></span>
               </Button>
-            </Group>
+            </div>
+
+            <div className="my-2 flex h-fit w-full items-center gap-2 md:my-4">
+              <span className="bg-appLayoutInverseHover h-px grow-1"></span>
+              <span className="text-appLayoutTextMuted h-[1rem] w-fit md:h-[1.5rem]">or</span>
+              <span className="bg-appLayoutInverseHover h-px grow-1"></span>
+            </div>
+
+            <div className="h-[20rem] w-full"></div>
           </Fieldset>
         </form>
       </div>
